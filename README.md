@@ -45,7 +45,7 @@
 
 Click the button below to fork:
 
-  <a href="https://github.com/Tappy-Black/Frost-Byte/fork"><img title="FROST-BYTE" src="https://img.shields.io/badge/FORK-FROST-BYTE-h?color=green&style=for-the-badge&logo=stackshare"></a>
+  <a href="https://github.com/Tappy-Black/Frost-Byte/fork"><img title="FROST BYTE" src="https://img.shields.io/badge/FORK-FROST BYTE-h?color=green&style=for-the-badge&logo=stackshare"></a>
 
 ## ɢᴇᴛ ᴘᴀɪʀɪɴɢ ᴄᴏᴅᴇ
   <p align="left">  
