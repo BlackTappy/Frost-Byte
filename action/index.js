@@ -1,6 +1,6 @@
 /* If it works, don't  Fix it */
 const {
-  default: ravenConnect,
+  default: frostConnect,
   useMultiFileAuthState,
   DisconnectReason,
   fetchLatestBaileysVersion,
@@ -95,7 +95,7 @@ async function startRaven() {
             
 if (!client.public && !mek.key.fromMe && chatUpdate.type === "notify") return;
       let m = smsg(client, mek, store);
-      const raven = require("../action/frost");
+      const frost = require("../action/frost");
       raven(client, m, chatUpdate, store);
     } catch (err) {
       console.log(err);
