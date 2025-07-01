@@ -1,6 +1,6 @@
 /* If it works, don't  Fix it */
 const {
-  default: frostConnect,
+  default: ravenConnect,
   useMultiFileAuthState,
   DisconnectReason,
   fetchLatestBaileysVersion,
@@ -28,8 +28,8 @@ const currentTime = Date.now();
 const Events = require('../action/events');
 const authenticationn = require('../action/auth');
 const PhoneNumber = require("awesome-phonenumber");
-const { imageToWebp, videoToWebp, writeExifImg, writeExifVid } = require('../lib/frostexif');
-const { smsg, isUrl, generateMessageTag, getBuffer, getSizeMedia, fetchJson, await, sleep } = require('../lib/frostfunc');
+const { imageToWebp, videoToWebp, writeExifImg, writeExifVid } = require('../lib/ravenexif');
+const { smsg, isUrl, generateMessageTag, getBuffer, getSizeMedia, fetchJson, await, sleep } = require('../lib/ravenfunc');
 const { sessionName, session, autobio, autolike, port, mycode, anticall, mode, prefix, antiforeign, packname, autoviewstatus } = require("../set.js");
 const makeInMemoryStore = require('../store/store.js'); 
 const store = makeInMemoryStore({ logger: logger.child({ stream: 'store' }) });
@@ -95,7 +95,7 @@ async function startRaven() {
             
 if (!client.public && !mek.key.fromMe && chatUpdate.type === "notify") return;
       let m = smsg(client, mek, store);
-      const frost = require("../action/frost");
+      const raven = require("../action/raven");
       raven(client, m, chatUpdate, store);
     } catch (err) {
       console.log(err);
@@ -291,7 +291,7 @@ if (!client.public && !mek.key.fromMe && chatUpdate.type === "notify") return;
     let type = '', mimetype = mime, pathFile = filename;
     if (options.asDocument) type = 'document';
     if (options.asSticker || /webp/.test(mime)) {
-      let { writeExif } = require('../lib/frostexif.js');
+      let { writeExif } = require('../lib/ravenexif.js');
       let media = { mimetype: mime, data };
       pathFile = await writeExif(media, { packname: packname, author: packname, categories: options.categories ? options.categories : [] });
       await fs.promises.unlink(filename);
