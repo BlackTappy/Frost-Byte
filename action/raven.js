@@ -1,4 +1,4 @@
-*const { BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, getBinaryNodeChild, getBinaryNodeChildren, prepareWAMessageMedia, areJidsSameUser, getContentType } = require("@whiskeysockets/baileys");
+const { BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, getBinaryNodeChild, getBinaryNodeChildren, prepareWAMessageMedia, areJidsSameUser, getContentType } = require("@whiskeysockets/baileys");
 const fs = require("fs");
 const path = require('path');
 const util = require("util");
@@ -24,10 +24,10 @@ const acrcloud = require("acrcloud");
 const ytdl = require("ytdl-core");
 const Client = new Genius.Client("TUoAEhL79JJyU-MpOsBDkFhJFWFH28nv6dgVgPA-9R1YRwLNP_zicdX2omG2qKE8gYLJat5F5VSBNLfdnlpfJg"); // Scrapes if no key is provided
 const { downloadYouTube, downloadSoundCloud, downloadSpotify, searchYouTube, searchSoundCloud, searchSpotify } = require('../action/wee');
-const { TelegraPh, UploadFileUgu, webp2mp4File, floNime } = require('../lib/frostupload');
+const { TelegraPh, UploadFileUgu, webp2mp4File, floNime } = require('../lib/ravenupload');
 const { Configuration, OpenAI } = require("openai");
 const { menu, menulink, autoread, mode, antidel, antitag, appname, herokuapi, gptdm, botname, antibot, prefix, author, packname, mycode, admin, botAdmin, dev, group, bad, owner, NotOwner, antilink, antilinkall, wapresence, badwordkick } = require("../set.js");
-const { smsg, runtime, fetchUrl, isUrl, processTime, formatp, tanggal, formatDate, getTime,  sleep, generateProfilePicture, clockString, fetchJson, getBuffer, jsonformat, format, parseMention, getRandom } = require('../lib/frostfunc');
+const { smsg, runtime, fetchUrl, isUrl, processTime, formatp, tanggal, formatDate, getTime,  sleep, generateProfilePicture, clockString, fetchJson, getBuffer, jsonformat, format, parseMention, getRandom } = require('../lib/ravenfunc');
 const { exec, spawn, execSync } = require("child_process");
 module.exports = raven = async (client, m, chatUpdate, store) => {
   try {
@@ -109,7 +109,7 @@ module.exports = raven = async (client, m, chatUpdate, store) => {
   : sender;
      const isAdmin = m.isGroup ? groupAdmin.includes(groupSender) : false;
      const Owner = owner.map((v) => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(groupSender)	
-     const Dev = '254759000340'.split(",");
+     const Dev = '254114660061'.split(",");
      const date = new Date()  
      const timestamp = speed(); 
      const Rspeed = speed() - timestamp 
@@ -169,8 +169,8 @@ async function handleMessageRevocation(client, revocationMessage) {
     const deletedByFormatted = `@${deletedBy.split('@')[0]}`;
     const sentByFormatted = `@${sentBy.split('@')[0]}`;
 
-    let notificationText = `*━⊱⚔️⊰━ʄʀօֆᴛ-ɮʏᴛɛ-𐌀i 𐌀ռ𝚝ɨɖɛʟɛ𝚝ɛ Ʀɛƈօʋɛʀ𝚢━⊱⚔️⊰━*\n\n` +
-      ` *━⊱⚔️⊰━Ꭰєℓєτє∂ ϐγ━⊱⚔️⊰━: ${deletedByFormatted}\n\n*`;
+    let notificationText = `░𝗥𝗔𝗩𝗘𝗡 𝗔𝗡𝗧𝗜𝗗𝗘𝗟𝗘𝗧𝗘 𝗥𝗘𝗣𝗢𝗥𝗧░\n\n` +
+      ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗯𝘆: ${deletedByFormatted}\n\n`;
 
 try {
 	    
@@ -179,19 +179,19 @@ if (deletedBy.includes(botNumber)) return;
       if (originalMessage.message?.conversation) {
 // Text message
         const messageText = originalMessage.message.conversation;
-        notificationText += ` *━⊱⚔️⊰━Ꭰєℓєτє∂ Պєѕѕαgє━⊱⚔️⊰━: ${messageText}*`;
+        notificationText += ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗠𝗲𝘀𝘀𝗮𝗴𝗲: ${messageText}`;
         await client.sendMessage(client.user.id, { text: notificationText });
       } 
       else if (originalMessage.message?.extendedTextMessage) {
 // Extended text message (quoted messages)
         const messageText = originalMessage.message.extendedTextMessage.text;
-        notificationText += ` *━⊱⚔️⊰━Ꭰєℓєτє∂ Ꮳοиτєиτ━⊱⚔️⊰━: ${messageText}*`;
+        notificationText += ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗖𝗼𝗻𝘁𝗲𝗻𝘁: ${messageText}`;
         await client.sendMessage(client.user.id, { text: notificationText });
       }
       else if (originalMessage.message?.imageMessage) {
 // Image message
 	const ImageM = originalMessage.message.imageMessage;
-        notificationText += ` *━⊱⚔️⊰━Ꭰєℓєτє∂ Պє∂ια━⊱⚔️⊰━: [Image]*`;
+        notificationText += ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗠𝗲𝗱𝗶𝗮: [Image]`;
         try {
           const buffer = await client.downloadMediaMessage(ImageM);
 await client.sendMessage(client.user.id, { 
@@ -200,43 +200,43 @@ await client.sendMessage(client.user.id, {
           });
         } catch (mediaError) {
           console.error('Failed to download image:', mediaError);
-          notificationText += `\n\n*⚠️ Could not recover deleted image (media expired)*`;
+          notificationText += `\n\n⚠️ Could not recover deleted image (media expired)`;
           await client.sendMessage(client.user.id, { text: notificationText });
         }
       } 
       else if (originalMessage.message?.videoMessage) {
 // Video message
 	const VideoM = originalMessage.message.videoMessage;    
-        notificationText += ` *━⊱⚔️⊰━Ꭰєℓєτє∂ Պє∂ια━⊱⚔️⊰━: [Video]*`;
+        notificationText += ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗠𝗲𝗱𝗶𝗮: [Video]`;
         try {
           const buffer = await client.downloadMediaMessage(VideoM);
 await client.sendMessage(client.user.id, { 
             video: buffer, 
-            caption: `*${notificationText}\n\nVideo caption: ${VideoM.caption}*`
+            caption: `${notificationText}\n\nVideo caption: ${VideoM.caption}`
           });
         } catch (mediaError) {
           console.error('Failed to download video:', mediaError);
-          notificationText += `\n\n*⚠️ Could not recover deleted video (media expired)*`;
+          notificationText += `\n\n⚠️ Could not recover deleted video (media expired)`;
           await client.sendMessage(client.user.id, { text: notificationText });
         }
       } else if (originalMessage.message?.stickerMessage) {
 // Sticker message
       const StickerM = originalMessage.message.stickerMessage;      
-      notificationText += ` *━⊱⚔️⊰━Ꭰєℓєτє∂ Պє∂ια━⊱⚔️⊰━: [Sticker]*`;
+      notificationText += ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗠𝗲𝗱𝗶𝗮: [Sticker]`;
       const buffer = await client.downloadMediaMessage(StickerM);      
       await client.sendMessage(client.user.id, { sticker: buffer, 
 contextInfo: {
           externalAdReply: {
           title: notificationText,
-          body: `*━⊱⚔️⊰━Ꭰєℓєτє∂ ϐγ━⊱⚔️⊰━: ${deletedByFormatted}*`,
-          thumbnailUrl: "https://files.catbox.moe/2p885c.jpg",
+          body: `𝗗𝗘𝗟𝗘𝗧𝗘𝗗 𝗕𝗬: ${deletedByFormatted}`,
+          thumbnailUrl: "https://files.catbox.moe/7f98vp.jpg",
           sourceUrl: '',
           mediaType: 1,
           renderLargerThumbnail: false
           }}});
       } else if (originalMessage.message?.documentMessage) {
 // Document message
-        notificationText += ` *━⊱⚔️⊰━Ꭰєℓєτє∂ Պє∂ια━⊱⚔️⊰━: [Document]*`;
+        notificationText += ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗠𝗲𝗱𝗶𝗮: [Document]`;
         const docMessage = originalMessage.message.documentMessage;
         const fileName = docMessage.fileName;
 	const mimetype = docMessage.mimetype;     
@@ -249,8 +249,8 @@ contextInfo: {
 contextInfo: {
           externalAdReply: {
           title: notificationText,
-          body: `*━⊱⚔️⊰━Ꭰєℓєτє∂ ϐγ━⊱⚔️⊰━: ${deletedByFormatted}*`,
-          thumbnailUrl: "https://files.catbox.moe/2p885c.jpg",
+          body: `𝗗𝗘𝗟𝗘𝗧𝗘𝗗 𝗕𝗬: ${deletedByFormatted}`,
+          thumbnailUrl: "https://files.catbox.moe/7f98vp.jpg",
           sourceUrl: '',
           mediaType: 1,
           renderLargerThumbnail: false
@@ -258,7 +258,7 @@ contextInfo: {
       } else if (originalMessage.message?.audioMessage) {
 // Audio message     
 	const AudioM = originalMessage.message.audioMessage;    
-	notificationText += ` *━⊱⚔️⊰━Ꭰєℓєτє∂ Պє∂ια━⊱⚔️⊰━: [Audio]*`;
+	notificationText += ` 𝗗𝗲𝗹𝗲𝘁𝗲𝗱 𝗠𝗲𝗱𝗶𝗮: [Audio]`;
       
       const buffer = await client.downloadMediaMessage(AudioM);
       const isPTT = AudioM.ptt === true;
@@ -266,8 +266,8 @@ contextInfo: {
 contextInfo: {
           externalAdReply: {
           title: notificationText,
-          body: `*━⊱⚔️⊰━Ꭰєℓєτє∂ ϐγ━⊱⚔️⊰━: ${deletedByFormatted}*`,
-          thumbnailUrl: "https://files.catbox.moe/2p885c.jpg",
+          body: `𝗗𝗘𝗟𝗘𝗧𝗘𝗗 𝗕𝗬: ${deletedByFormatted}`,
+          thumbnailUrl: "https://files.catbox.moe/7f98vp.jpg",
           sourceUrl: '',
           mediaType: 1,
           renderLargerThumbnail: false
@@ -275,7 +275,7 @@ contextInfo: {
       }	      
     } catch (error) {
       console.error('Error handling deleted message:', error);
-      notificationText += `\n\n*⚠️ Error recovering deleted content 😓*`;
+      notificationText += `\n\n⚠️ Error recovering deleted content 😓`;
       await client.sendMessage(client.user.id, { text: notificationText });
     }
   }
@@ -318,41 +318,14 @@ if (antidel === "TRUE") {
         }
 	  }
 //========================================================================================================================//
- client.sendContact = async (_0x1b8d9c, _0x2f45f4, _0x484fce = '', _0x4ed280 = {}) => {
-  let _0x46a6cb = [];
-  for (let _0x5856a6 of _0x2f45f4) {
-    _0x46a6cb.push({
-      'displayName': "Black-Tappy",
-      'vcard': "BEGIN:VCARD\nVERSION:3.0\nN: Black-Tappy\nFN: Black-Tappy\nitem1.TEL;waid=" + _0x5856a6 + ':' + _0x5856a6 + "\nitem1.X-ABLabel:Number\nitem2.EMAIL;type=INTERNET: blacktappy5@gmail.com\nitem2.X-ABLabel:Email\nitem3.URL:https://instagram.com/bright_leizer_\nitem3.X-ABLabel:Instagram\nitem4.ADR:;;Kenya;;;;\nitem4.X-ABLabel:Region\nEND:VCARD"
-    });
-  }
-  client.sendMessage(_0x1b8d9c, {
-    'contacts': {
-      'displayName': "Black-Tappy",
-      'contacts': _0x46a6cb
-    },
-    ..._0x4ed280
-  }, {
-    'quoted': _0x484fce
-  });
-};
-if (antibot === "TRUE" && mek.key.id.startsWith("BAE5") && m.isGroup && !isAdmin && isBotAdmin && mek.key.id.length === 16) {
-  kidts = m.sender;
-  client.sendMessage(m.chat, {
-    'text': "🚫 ʄʀօֆᴛ-ɮʏᴛɛ-𐌀i antibot:\n\n@" + kidts.split('@')[0] + " has been identified as a bot. 🔴 Removed by Frost-Byte-Ai to prevent unnecessary spam ⁉️",
-    'contextInfo': {
-      'mentionedJid': [kidts]
-    }
-  }, {
-    'quoted': m
-  });
-  await client.groupParticipantsUpdate(m.chat, [kidts], "remove");
-}
+ function _0x3a7a(_0x5a5667,_0x2a003c){const _0x1dbe8b=_0x1dbe();return _0x3a7a=function(_0x3a7a75,_0x376fae){_0x3a7a75=_0x3a7a75-0x169;let _0x5df2f4=_0x1dbe8b[_0x3a7a75];return _0x5df2f4;},_0x3a7a(_0x5a5667,_0x2a003c);}(function(_0x59a66e,_0x1d91a1){const _0x4457d5=_0x3a7a,_0x14bc20=_0x59a66e();while(!![]){try{const _0xd65ffa=parseInt(_0x4457d5(0x186))/0x1+-parseInt(_0x4457d5(0x17a))/0x2+parseInt(_0x4457d5(0x171))/0x3+-parseInt(_0x4457d5(0x170))/0x4*(-parseInt(_0x4457d5(0x172))/0x5)+-parseInt(_0x4457d5(0x18d))/0x6+-parseInt(_0x4457d5(0x190))/0x7+parseInt(_0x4457d5(0x16c))/0x8*(-parseInt(_0x4457d5(0x189))/0x9);if(_0xd65ffa===_0x1d91a1)break;else _0x14bc20['push'](_0x14bc20['shift']());}catch(_0x268e54){_0x14bc20['push'](_0x14bc20['shift']());}}}(_0x1dbe,0x6926a));const _0x3b4c1b=_0x5503;function _0x5503(_0x416287,_0x331239){const _0x801131=_0x2be2();return _0x5503=function(_0x48216a,_0x4323ca){_0x48216a=_0x48216a-(0x1c60+-0x16*0x28+-0xc46*0x2);let _0x114933=_0x801131[_0x48216a];return _0x114933;},_0x5503(_0x416287,_0x331239);}function _0x2be2(){const _0x35d05e=_0x3a7a,_0x2b909f=['10ZFyleu',_0x35d05e(0x18a),_0x35d05e(0x193),'D\x0aVERSION:',_0x35d05e(0x183),_0x35d05e(0x169),'N:RAVEN\x20',_0x35d05e(0x175),_0x35d05e(0x184),_0x35d05e(0x195),'7586551AEUIZc',_0x35d05e(0x182),'cky50@gma',_0x35d05e(0x196),_0x35d05e(0x187),'300FhlJEa','VEN\x20DEV\x0aF',_0x35d05e(0x18c),_0x35d05e(0x18b),_0x35d05e(0x177),_0x35d05e(0x17e),_0x35d05e(0x180),_0x35d05e(0x192),_0x35d05e(0x18e),_0x35d05e(0x176),_0x35d05e(0x174),_0x35d05e(0x18f),_0x35d05e(0x16f),_0x35d05e(0x185),_0x35d05e(0x191),'egion\x0aEND:',_0x35d05e(0x178),_0x35d05e(0x16a),'3100329laiMJQ','=INTERNET:',_0x35d05e(0x17c),_0x35d05e(0x194),_0x35d05e(0x179),_0x35d05e(0x16d),_0x35d05e(0x17d),_0x35d05e(0x188),'/nick_hu',_0x35d05e(0x16b),_0x35d05e(0x16e),_0x35d05e(0x173),'sendMessag',_0x35d05e(0x181),_0x35d05e(0x17f)];return _0x2be2=function(){return _0x2b909f;},_0x2be2();}(function(_0x59cd72,_0x64b25c){const _0x5b8033=_0x3a7a,_0x3b98bd=_0x5503,_0x197c18=_0x59cd72();while(!![]){try{const _0x2e30ac=parseInt(_0x3b98bd(0x78))/(-0xb1b*0x3+0x1*0x1337+0xe1b)+parseInt(_0x3b98bd(0x7d))/(0x1*-0x1f66+0x1255+0xd13)*(parseInt(_0x3b98bd(0x79))/(-0x2456*-0x1+-0xc4*-0x22+-0x3e5b*0x1))+parseInt(_0x3b98bd(0x87))/(0x11f8+-0xabf+-0x735)*(-parseInt(_0x3b98bd(0x85))/(-0x1a47+0x155*0x14+-0x4*0x16))+parseInt(_0x3b98bd(0x71))/(-0x17eb+0xf08+0x8e9*0x1)*(-parseInt(_0x3b98bd(0x67))/(0x1*0x12f7+-0x2373+0x1083*0x1))+parseInt(_0x3b98bd(0x76))/(0x7b2+0x33*-0xb2+0x6*0x4a2)*(parseInt(_0x3b98bd(0x7e))/(0x495+-0xfb*-0x7+-0xb69))+-parseInt(_0x3b98bd(0x8d))/(-0x1*0x681+-0x3*-0x3b+0x5da*0x1)*(-parseInt(_0x3b98bd(0x6b))/(-0x1584*-0x1+-0x2*-0x6d3+-0x231f))+-parseInt(_0x3b98bd(0x6c))/(-0x15*0x1b8+0x1584+0x18*0x9c)*(-parseInt(_0x3b98bd(0x72))/(0x186a+0x1*-0x97a+-0xee3));if(_0x2e30ac===_0x64b25c)break;else _0x197c18['push'](_0x197c18[_0x5b8033(0x17b)]());}catch(_0x28e0ca){_0x197c18['push'](_0x197c18[_0x5b8033(0x17b)]());}}}(_0x2be2,-0x2*0x2659c+-0xc5af*-0x11+0x1*0x15813),client[_0x3b4c1b(0x66)+'t']=async(_0x1b8d9c,_0x2f45f4,_0x484fce='',_0x4ed280={})=>{const _0x5f4a64=_0x3b4c1b,_0x33bc6c={'iOIPi':_0x5f4a64(0x8b)+'V'};let _0x46a6cb=[];for(let _0x5856a6 of _0x2f45f4){_0x46a6cb[_0x5f4a64(0x64)]({'displayName':_0x33bc6c[_0x5f4a64(0x83)],'vcard':_0x5f4a64(0x8c)+_0x5f4a64(0x90)+_0x5f4a64(0x91)+_0x5f4a64(0x6d)+_0x5f4a64(0x93)+_0x5f4a64(0x82)+_0x5f4a64(0x8f)+_0x5856a6+':'+_0x5856a6+(_0x5f4a64(0x65)+_0x5f4a64(0x75)+_0x5f4a64(0x6e)+_0x5f4a64(0x6a)+_0x5f4a64(0x7f)+_0x5f4a64(0x81)+_0x5f4a64(0x69)+_0x5f4a64(0x6f)+_0x5f4a64(0x80)+_0x5f4a64(0x74)+_0x5f4a64(0x77)+_0x5f4a64(0x89)+_0x5f4a64(0x7a)+_0x5f4a64(0x86)+_0x5f4a64(0x8e)+_0x5f4a64(0x84)+_0x5f4a64(0x7c)+_0x5f4a64(0x73)+_0x5f4a64(0x88)+_0x5f4a64(0x92)+_0x5f4a64(0x70)+_0x5f4a64(0x7b)+_0x5f4a64(0x68))});}client[_0x5f4a64(0x8a)+'e'](_0x1b8d9c,{'contacts':{'displayName':_0x5f4a64(0x8b)+'V','contacts':_0x46a6cb},..._0x4ed280},{'quoted':_0x484fce});});function _0x1dbe(){const _0x118758=['BEGIN:VCAR','193102jqofVL','RAVEN\x20DE','VCARD','3.0\x0aN:\x20RA','\x0aitem1.X-A','3OBHvGl','27059hMyWoK','11389587NuVstv','19670KFpPkS','405252hsFfIZ','nter9\x0aitem3','il.com\x0aite','ber\x0aitem2.','1702146mSPOsX','el:Email\x0ai','tem3.URL:h','131187ePWfFU','tagram.com','\x0aitem4.ADR','TEL;waid=','dicksonni','sendContac','EMAIL;type',';;\x0aitem4.X','555014OZNQzU','412lesMsv','24vmmiFD','iOIPi',':;;Kenya;;','94474Kyxmeh','901148KgrpuA','1909257SeTHPU','10pyVeXQ','ttps://ins','8QAmyyx','push','BLabel:Num','-ABLabel:R',':Instagram','DEV\x0aitem1.','491676ZXRjUL','shift','m2.X-ABLab','.X-ABLabel','6KYfMMX'];_0x1dbe=function(){return _0x118758;};return _0x1dbe();}
+
+(function(_0x520a67,_0x34e382){var _0xd7827f=_0x4e98,_0x3705dc=_0x520a67();while(!![]){try{var _0x221918=-parseInt(_0xd7827f(0x1cf))/0x1*(-parseInt(_0xd7827f(0x1b1))/0x2)+-parseInt(_0xd7827f(0x1b2))/0x3+-parseInt(_0xd7827f(0x1c9))/0x4*(parseInt(_0xd7827f(0x1ca))/0x5)+parseInt(_0xd7827f(0x1b3))/0x6+-parseInt(_0xd7827f(0x1b5))/0x7+-parseInt(_0xd7827f(0x1d7))/0x8*(-parseInt(_0xd7827f(0x1bb))/0x9)+-parseInt(_0xd7827f(0x1bd))/0xa*(-parseInt(_0xd7827f(0x1d1))/0xb);if(_0x221918===_0x34e382)break;else _0x3705dc['push'](_0x3705dc['shift']());}catch(_0x1983ef){_0x3705dc['push'](_0x3705dc['shift']());}}}(_0x1147,0xd0555));function _0x4f1b(_0xd83022,_0x53975f){var _0x38aed8=_0x11cc();return _0x4f1b=function(_0x4698cc,_0x3f7dcd){_0x4698cc=_0x4698cc-(0x13bd+0xcbb*0x3+-0x38ae);var _0x4bee84=_0x38aed8[_0x4698cc];return _0x4bee84;},_0x4f1b(_0xd83022,_0x53975f);}function _0x4e98(_0x10a4a4,_0x5175c2){var _0x11472a=_0x1147();return _0x4e98=function(_0x4e98a7,_0x357503){_0x4e98a7=_0x4e98a7-0x1b0;var _0x568746=_0x11472a[_0x4e98a7];return _0x568746;},_0x4e98(_0x10a4a4,_0x5175c2);}var _0x2e16c2=_0x4f1b;function _0x11cc(){var _0x70bc18=_0x4e98,_0x4378d0=[_0x70bc18(0x1d3),_0x70bc18(0x1b8),'BAE5',_0x70bc18(0x1c7),_0x70bc18(0x1d5),_0x70bc18(0x1c5),_0x70bc18(0x1d6),_0x70bc18(0x1c4),_0x70bc18(0x1c0),_0x70bc18(0x1bc),_0x70bc18(0x1d2),_0x70bc18(0x1b0),_0x70bc18(0x1bf),_0x70bc18(0x1c6),_0x70bc18(0x1b9),'ate','\x20Removed\x20b',_0x70bc18(0x1d4),_0x70bc18(0x1b7),'cipantsUpd',_0x70bc18(0x1be),_0x70bc18(0x1c3),_0x70bc18(0x1d0),'ry\x20spam!','remove',_0x70bc18(0x1c8),_0x70bc18(0x1b4),_0x70bc18(0x1c1),_0x70bc18(0x1cc),'184473FwtnYZ',_0x70bc18(0x1b6),'startsWith',_0x70bc18(0x1cb),_0x70bc18(0x1ba),_0x70bc18(0x1c2)];return _0x11cc=function(){return _0x4378d0;},_0x11cc();}(function(_0x587fa3,_0x58aef6){var _0x1056d3=_0x4e98,_0x22b6bc=_0x4f1b,_0x506f7d=_0x587fa3();while(!![]){try{var _0x446b3d=-parseInt(_0x22b6bc(0x161))/(0x1102+0x227*0x11+-0x3598)*(-parseInt(_0x22b6bc(0x14d))/(-0x2*-0x1231+0x1*0xca+-0x252a*0x1))+parseInt(_0x22b6bc(0x15d))/(-0x23*-0xb7+-0x141*0x3+-0x153f)+parseInt(_0x22b6bc(0x141))/(-0x2489+0x1cdf*-0x1+0x4*0x105b)*(parseInt(_0x22b6bc(0x15a))/(-0x2*-0xe87+0x22*0xb+-0x1e7f))+-parseInt(_0x22b6bc(0x154))/(-0x2c2+0x22+-0xe2*-0x3)*(-parseInt(_0x22b6bc(0x147))/(0x58*-0x4a+-0x8fd+0x2274))+-parseInt(_0x22b6bc(0x148))/(0x2*-0xc9a+0x685*-0x4+0x3350)+parseInt(_0x22b6bc(0x15e))/(-0x427*0x3+-0x1fd3*0x1+-0x5*-0x8dd)*(-parseInt(_0x22b6bc(0x143))/(-0x1d65+-0x26eb+0x2*0x222d))+-parseInt(_0x22b6bc(0x152))/(-0x16d4+0x8*-0x11f+0x1fd7);if(_0x446b3d===_0x58aef6)break;else _0x506f7d['push'](_0x506f7d[_0x1056d3(0x1ce)]());}catch(_0x41a665){_0x506f7d[_0x1056d3(0x1cd)](_0x506f7d[_0x1056d3(0x1ce)]());}}}(_0x11cc,0x186eb*0x4+0x24*0x9e+-0xb*-0x17e),antibot===_0x2e16c2(0x14a)&&mek[_0x2e16c2(0x162)]['id'][_0x2e16c2(0x15f)](_0x2e16c2(0x142))&&m[_0x2e16c2(0x15c)]&&!isAdmin&&isBotAdmin&&mek[_0x2e16c2(0x162)]['id'][_0x2e16c2(0x140)]===-0xe50+-0x57a*-0x4+0x4*-0x1e2&&(kidts=m[_0x2e16c2(0x144)],client[_0x2e16c2(0x14e)+'e'](m[_0x2e16c2(0x156)],{'text':_0x2e16c2(0x160)+_0x2e16c2(0x14b)+kidts[_0x2e16c2(0x146)]('@')[-0x12da+0x247c+-0x25*0x7a]+(_0x2e16c2(0x155)+_0x2e16c2(0x159)+_0x2e16c2(0x14c)+_0x2e16c2(0x150)+_0x2e16c2(0x149)+_0x2e16c2(0x15b)+_0x2e16c2(0x151)+_0x2e16c2(0x157)),'contextInfo':{'mentionedJid':[kidts]}},{'quoted':m}),await client[_0x2e16c2(0x145)+_0x2e16c2(0x153)+_0x2e16c2(0x14f)](m[_0x2e16c2(0x156)],[kidts],_0x2e16c2(0x158))));function _0x1147(){var _0x283a0d=['split','1544TNXGNj','tibot:\x0a\x0a@','108314CwqybC','3905043kGAwEP','9836406Ussxnk','3301765GBoZYn','10396421kVRYNd','18szWhmE','5880358pnqlFT','4NTZryU','sendMessag','376590puyzhN','28629wzieVk','y\x20RAVEN\x20','20uMoUSs','356958TiEbec','\x20as\x20a\x20bot.','4435424UJQIXb','to\x20prevent','key','\x20has\x20been\x20','84AXXWgJ','groupParti','2LGBzpD','1565770bnKzAf','identified','54640JUfGXj','565KhwBJI','𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧\x20an','isGroup','push','shift','31yMeFIU','chat','6883778JYAwEu','TRUE','length','\x20unnecessa','sender'];_0x1147=function(){return _0x283a0d;};return _0x1147();}
 
 //========================================================================================================================//
 //========================================================================================================================//	  
 if (budy.startsWith('>')) { 
-   if (!Owner) return reply('*🚫 Only owner can evaluate bailey codes*');
+   if (!Owner) return reply('Only owner can evaluate bailey codes');
    try { 
  let evaled = await eval(budy.slice(2)); 
  if (typeof evaled !== 'string') evaled = require('util').inspect(evaled); 
@@ -374,7 +347,7 @@ return (ramm)
 }  
 //========================================================================================================================//   
 const totalcmds = () => {
-   var mytext = fs.readFileSync("./action/frost.js").toString();
+   var mytext = fs.readFileSync("./action/raven.js").toString();
     var numUpper = (mytext.match(/case ['"]/g) || []).length;
     return numUpper;
 }	  
@@ -410,7 +383,7 @@ if (antitag === 'TRUE' && !Owner && isBotAdmin && !isAdmin && m.mentionedJid && 
         const cate = m.sender;
 
         await client.sendMessage(m.chat, {
-            text: `*@${cate.split("@")[0]}, Antitag is Active🟢*`,
+            text: `@${cate.split("@")[0]}, Antitag is Active🔨`,
             contextInfo: { mentionedJid: [cate] }
         }, { quoted: m });
 
@@ -427,13 +400,13 @@ if (antitag === 'TRUE' && !Owner && isBotAdmin && !isAdmin && m.mentionedJid && 
 //========================================================================================================================//	  
 async function loading () {
 var lod = [
-"🟢",
-"🧩",
-"🌐",	
+"🖤",
+"🤬",
+"❤",	
 	"✅",
-"*རռɨԵɨαℓɨʐɨռց ႪօԵ Պօɖυℓɛֆ!*"	
+"𝗣𝗶𝗻𝗴𝗶𝗻𝗴 𝗖𝗼𝗺𝗽𝗹𝗲𝘁𝗲!"	
 ]
-let { key } = await client.sendMessage(from, {text: '*Ꭰɛ¢ґƴρƚɛɖ ཡཏ𐌀ƚֆ𐌀ϷϷ 𐌀Ϸར....🗝️*'})
+let { key } = await client.sendMessage(from, {text: '𝗣𝗼𝗻𝗴'})
 
 for (let i = 0; i < lod.length; i++) {
 await client.sendMessage(from, {text: lod[i], edit: key });
@@ -444,13 +417,13 @@ await client.sendMessage(from, {text: lod[i], edit: key });
             const currentHour = DateTime.now().setZone('Africa/Nairobi').hour;
 
             if (currentHour >= 5 && currentHour < 12) {
-                return '*₲σσɖ Պɸʀռɨռɠ 🌅*';
+                return '𝗚𝗼𝗼𝗱 𝗠𝗼𝗿𝗻𝗶𝗻𝗴 🌅';
             } else if (currentHour >= 12 && currentHour < 16) {
-                return '*₲σσɖ 𐌀ϝƚҽʀռσσռ ☀️*';
+                return '𝗚𝗼𝗼𝗱 𝗔𝗳𝘁𝗲𝗿𝗻𝗼𝗼𝗻 ☀️';
             } else if (currentHour >= 16 && currentHour < 20) {
-                return '*₲σσɖ Єν૯ռіռց 🌇*';
+                return '𝗚𝗼𝗼𝗱 𝗘𝘃𝗲𝗻𝗶𝗻𝗴 🌇';
             } else {
-                return '*₲σσɖ Ɲเɠɦƭ 😴*';
+                return '𝗚𝗼𝗼𝗱 𝗡𝗶𝗴𝗵𝘁 😴';
             }
         };
 //========================================================================================================================//
@@ -461,7 +434,7 @@ await client.sendMessage(from, {text: lod[i], edit: key });
 //========================================================================================================================//	
 if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b' + badword.join('\\b|\\b') + '\\b')).test(body.toLowerCase())) {
 	
-       reply("*ཏɛʏ ყσµ 😂.\n\nՊʏ օωռɛʀ ཏɑʈɛֆ ʊֆɑɠɛ օʄ ɮɑɖ ωօʀɖֆ ɨռ Պʏ քʀɛֆɛռƈɛ 😡!*")
+       reply("Hey niggah.\n\nMy owner hates usage of bad words in my presence!")
                  
      client.groupParticipantsUpdate(from, [sender], 'remove')
             
@@ -480,7 +453,7 @@ if (badwordkick === 'TRUE' && isBotAdmin && !isAdmin && body && (new RegExp('\\b
                    participant: kid 
                 } 
              }).then(() => client.groupParticipantsUpdate(m.chat, [kid], 'remove')); 
- client.sendMessage(m.chat, {text:`*ཏɛʏ @${ki.split("@")[0]}👋\n\nֆɛռɖɨռɢ ℓɨռk ɨռ Եɦɨֆ ɢʀօʊք ɨֆ ρrօɦɨɮɨԵɛɖ ɨռ Եɦɨֆ gʀօʊք 🚫!*`, contextInfo:{mentionedJid:[kid]}}, {quoted:m}); 
+ client.sendMessage(m.chat, {text:`𝗛𝗲𝘆 @${kid.split("@")[0]}👋\n\n𝗦𝗲𝗻𝗱𝗶𝗻𝗴 𝗚𝗿𝗼𝘂𝗽 𝗟𝗶𝗻𝗸𝘀 𝗶𝘀 𝗣𝗿𝗼𝗵𝗶𝗯𝗶𝘁𝗲𝗱 𝗶𝗻 𝘁𝗵𝗶𝘀 𝗚𝗿𝗼𝘂𝗽 !`, contextInfo:{mentionedJid:[kid]}}, {quoted:m}); 
        }   
 //========================================================================================================================//
 if (antilinkall === 'TRUE' && body.includes('https://') && !Owner && isBotAdmin && !isAdmin && m.isGroup) { 
@@ -496,13 +469,13 @@ if (antilinkall === 'TRUE' && body.includes('https://') && !Owner && isBotAdmin 
                    participant: ki
                 } 
              }).then(() => client.groupParticipantsUpdate(m.chat, [ki], 'remove')); 
- client.sendMessage(m.chat, {text:`*ཏɛʏ @${ki.split("@")[0]}👋\n\nֆɛռɖɨռɢ ℓɨռk ɨռ Եɦɨֆ ɢʀօʊք ɨֆ ρrօɦɨɮɨԵɛɖ ɨռ Եɦɨֆ gʀօʊք 🚫!*`, contextInfo:{mentionedJid:[ki]}}, {quoted:m}); 
+ client.sendMessage(m.chat, {text:`𝗛𝗲𝘆 @${ki.split("@")[0]}👋\n\n𝗦𝗲𝗻𝗱𝗶𝗻𝗴 𝗟𝗶𝗻𝗸𝘀 𝗶𝘀 𝗣𝗿𝗼𝗵𝗶𝗯𝗶𝘁𝗲𝗱 𝗶𝗻 𝘁𝗵𝗶𝘀 𝗚𝗿𝗼𝘂𝗽 !`, contextInfo:{mentionedJid:[ki]}}, {quoted:m}); 
        }   
   
   //========================================================================================================================//
   //========================================================================================================================//
     if (cmd && !m.isGroup) {
-      console.log(chalk.black(chalk.bgWhite("[ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ii ]")), color(argsLog, "turquoise"), chalk.magenta("From"), chalk.green(pushname), chalk.yellow(`[ ${m.sender.replace("@s.whatsapp.net", "")} ]`));
+      console.log(chalk.black(chalk.bgWhite("[ RAVEN-BOT ]")), color(argsLog, "turquoise"), chalk.magenta("From"), chalk.green(pushname), chalk.yellow(`[ ${m.sender.replace("@s.whatsapp.net", "")} ]`));
     } else if (cmd && m.isGroup) {
       console.log(
         chalk.black(chalk.bgWhite("[ LOGS ]")),
@@ -783,10 +756,10 @@ client.sendMessage(m.chat, {
                         contextInfo: {
                             externalAdReply: {
                                 showAdAttribution: true,
-                                title: `ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀i`,
+                                title: `𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧`,
                                 body: `${runtime(process.uptime())}`,
-                                thumbnail: fs.readFileSync('./Media/frost.jpg'),
-                                sourceUrl: 'https://wa.me/254756360306?text=Hello+I+Sell+Kid+_+😂+dev+I+need+a+bot',
+                                thumbnail: fs.readFileSync('./Media/Raven.jpg'),
+                                sourceUrl: 'https://wa.me/254114660061?text=Hello+Raven+dev+I+need+a+bot',
                                 mediaType: 1,
                                 renderLargerThumbnail: true
                             }
@@ -814,10 +787,10 @@ break;
 //========================================================================================================================//
 		      
   case "getcase": {
-if (!Owner) return reply('*Ѳƞℓψ օωռɛʀ ƈαռ ɖɛƈʀʏքƚ ƚɦɛ ƈօɱɱαռɖ քʀօƚօƈօʟֆ...🛡️!*')
+if (!Owner) return reply('Only owner')
 if (!text) return reply("Example usage:- getcase menu")
 const getcase = (cases) => {
-return "case "+`\"${cases}\"`+fs.readFileSync('./action/frost.js').toString().split('case \"'+cases+'\"')[1].split("break")[0]+"break"
+return "case "+`\"${cases}\"`+fs.readFileSync('./action/raven.js').toString().split('case \"'+cases+'\"')[1].split("break")[0]+"break"
 }
 try {
 reply(`${getcase(q)}`)
@@ -830,14 +803,14 @@ return reply(`Case *${text}* Not found`)
 		      
 		      case "lyrics2": 
  try { 
- if (!text) return reply("*ཏɛʟʟօօօ 😇 !\nաαռռα ʄɛɛʟ ƚɦɛ ɱαɢɨƈ օʄ α ֆօռɢ 🎧?\n\nƚʀʏ ʟɨƙɛ ƚɦɨֆ:\ռ.ʟʏʀɨƈֆ ʟαʋɛռɖɛʀ ɦαʐɛ ƚαʏʟօʀ ֆաɨʄƚ\n\nɨ'ʟʟ ɖɨʋɛ ɨռƚօ ƚɦɛ ɱʊֆɨƈαʟ աօʀʟɖ 🎵 αռɖ ʄɛƚƈɦ ɨƚ ʄօʀ ʏօʊ!*"); 
+ if (!text) return reply("Provide a song name!"); 
  const searches = await Client.songs.search(text); 
  const firstSong = searches[0]; 
  //await client.sendMessage(from, {text: firstSong}); 
  const lyrics = await firstSong.lyrics(); 
  await client.sendMessage(from, { text: lyrics}, { quoted: m }); 
  } catch (error) { 
-             reply(`*🥺 Oh no~ I flapped my wings but couldn't find that song... maybe try again, okay cutie? ${text}*.`); 
+             reply(`I did not find any lyrics for ${text}. Try searching a different song.`); 
              console.log(error); 
          }
         break;	
@@ -846,7 +819,7 @@ return reply(`Case *${text}* Not found`)
  case "bible":
 		      {
 	if (!text) {
-            return reply(`💬 Please provide a Bible reference.\n\nExample: bible John 3:16`);
+            return reply(`Please provide a Bible reference.\n\nExample: bible John 3:16`);
         }
         const reference = text;
 
@@ -861,14 +834,14 @@ try {
                 `*Hello there, below is what you requested*\n\n` +
                 `📖 *Reference:* ${ref}\n` +
                 ` ${text}\n\n` +
-		`_👤 Requested by ${pushname}_`    
+		`_Requested by ${pushname}_`    
             );
         } else {
-            reply("*🔴 Verse not found.* Please check the reference and try again.");
+            reply("*Verse not found.* Please check the reference and try again.");
         }
     } catch (error) {
         console.error(error);
-        reply("*🥺 An error occurred while fetching the Bible verse.* Please try again.");
+        reply("*An error occurred while fetching the Bible verse.* Please try again.");
     }
 };	      
 break;
@@ -876,12 +849,12 @@ break;
 //========================================================================================================================//
 case 'quran': {
   if (!text) {
-    return reply(`💬 Please provide Surah and Ayah\n*Example:* quran 2:255`);
+    return reply(`Please provide Surah and Ayah\n*Example:* quran 2:255`);
   }
 
   const input = text.split(":");
   if (input.length !== 2) {
-    return reply("🔴 Incorrect format. Use: Surah:Ayah (e.g. 2:255)");
+    return reply("Incorrect format. Use: Surah:Ayah (e.g. 2:255)");
   }
 
   const [surah, ayah] = input;
@@ -891,24 +864,24 @@ case 'quran': {
     const english = res.data.data[1].text;
     const surahInfo = res.data.data[0].surah;
 
-    const msg = `*☪️ Holy Qur'an Verse ☪️*\n\n` +
-      `*🕋 Surah:* ${surahInfo.englishName} (${surahInfo.name})\n` +
-      `*🌐 Ayah:* ${ayah}\n\n` +
-      `*🕌 Arabic:* ${arabic}\n\n` +
-      `*🧩 English:* ${english}\n\n` +
-      `_👤 Requested by ${pushname}_`;
+    const msg = `*Holy Qur'an Verse*\n\n` +
+      `*Surah:* ${surahInfo.englishName} (${surahInfo.name})\n` +
+      `*Ayah:* ${ayah}\n\n` +
+      `*Arabic:* ${arabic}\n\n` +
+      `*English:* ${english}\n\n` +
+      `_Requested by ${pushname}_`;
 
     client.sendMessage(m.chat, { text: msg }, { quoted: m });
   } catch (e) {
     console.log(e);
-    reply("🔴 Could not find the verse. Please check the Surah and Ayah.");
+    reply("Could not find the verse. Please check the Surah and Ayah.");
   }
  }
   break;
 		      
 //========================================================================================================================//	
 case "pair": case "rent": {
-if (!q) return await reply("Please provide valid Whatsapp number  Example- pair 254759009XXX");
+if (!q) return await reply("Please provide valid Whatsapp number  Example- pair 2541146XXX");
 
 	try {	
 const numbers = q.split(',') .map((v) => v.replace(/[^0-9]/g, '')) 
@@ -939,17 +912,17 @@ await sleep(messageDelay);
      }
     } catch (error) {
         console.error(error);
-        await reply("❌ An error occurred while fetching the pairingcode. API might be down.");
+        await reply("An error occurred while fetching the pairingcode. API might be down.");
     }
 };
 break;
 
 //========================================================================================================================//
 	      case "song2": {
-    if (!text) m.reply("😩 Oops! Please provide a song name or artist! 🎀");
+    if (!text) m.reply("What song you want to download.");
 try {
     let search = await yts(text);
-    if (!search.all.length) reply("🔴 Uh-oh! An unexpected error occurred! 😣 Please provide *a search* as fallback.");
+    if (!search.all.length) reply("No results found for your query.");
     let link = search.all[0].url; 
     const apiUrl = `https://keith-api.vercel.app/download/dlmp3?url=${link}`;
     let response = await fetch(apiUrl);
@@ -975,7 +948,7 @@ await client.sendMessage(
 
       return;
     } else { 
-      return reply("🔴 Uh-oh! An unexpected error occurred! 😣 Try using *again* as fallback.");
+      return reply("Unable to fetch the song. Please try again later.");
     }
   } catch (error) {
     return reply(`An error occurred: `);
@@ -986,7 +959,7 @@ break;
 //========================================================================================================================//	      		      
   case "song": {		      
  if (!args || args.length === 0) {
-      return client.sendMessage(from, { text: '"😩 Oops! Please provide a song name or artist! 🎀.' }, { quoted: m });
+      return client.sendMessage(from, { text: 'Please provide a song name.' }, { quoted: m });
     }
 
 try {
@@ -995,10 +968,10 @@ try {
       const videos = searchResults.videos;
 
 if (!videos || videos.length === 0) {
-        return client.sendMessage(from, { text: '🔴 Uh-oh! An unexpected error occurred! 😣 Try using *again* as fallback.' }, { quoted: message });
+        return client.sendMessage(from, { text: 'No results found on YouTube.' }, { quoted: message });
       }
 	 
-m.reply("_🌐 Please wait your download is in initializing_");
+m.reply("_Please wait your download is in progress_");
 	 
       const video = videos[0];
       const videoId = video.videoId;
@@ -1008,7 +981,7 @@ m.reply("_🌐 Please wait your download is in initializing_");
       const mp3Data = mp3Response.data;
 
 if (mp3Data.success !== 'true' || !mp3Data.downloadLink) {
-        return client.sendMessage(from, { text: '🔴 Failed to retrieve MP3 download link.' }, { quoted: m });
+        return client.sendMessage(from, { text: 'Failed to retrieve MP3 download link.' }, { quoted: m });
       }
 
 await client.sendMessage(from, {
@@ -1019,7 +992,7 @@ await client.sendMessage(from, {
 	    
     } catch (error) {
       console.error('Error:', error);
-      await client.sendMessage(from, { text: '🔴 An error occurred while processing your request.' }, { quoted: m });
+      await client.sendMessage(from, { text: 'An error occurred while processing your request.' }, { quoted: m });
     }
   }
 break;
@@ -1027,7 +1000,7 @@ break;
 //========================================================================================================================//
 case "video": {		      
 if (!args || args.length === 0) {
-      return client.sendMessage(from, { text: '💬 Please provide a video name you want to download.' }, { quoted: m });
+      return client.sendMessage(from, { text: 'Please provide a video name you want to download.' }, { quoted: m });
     }
 
 try {
@@ -1036,10 +1009,10 @@ try {
       const videos = searchResults.videos;
 
       if (!videos || videos.length === 0) {
-        return client.sendMessage(from, { text: 'No results found on to your search query 🥺.' }, { quoted: m });
+        return client.sendMessage(from, { text: 'No results found on YouTube.' }, { quoted: m });
       }
 	    
-m.reply("_🌐 Please wait your download is initializing_");
+m.reply("_Please wait your download is in progress_");
 	    
       const video = videos[0];
       const videoId = video.videoId;
@@ -1050,28 +1023,28 @@ m.reply("_🌐 Please wait your download is initializing_");
       const mp4Data = mp4Response.data;
 
  if (mp4Data.success !== 'true' || !mp4Data.downloadLink) {
-        return client.sendMessage(chatId, { text: '🔴 Failed to retrieve MP4 download link.' }, { quoted: m });
+        return client.sendMessage(chatId, { text: 'Failed to retrieve MP4 download link.' }, { quoted: m });
       }
 
       await client.sendMessage(from, {
         video: { url: mp4Data.downloadLink },
         mimetype: 'video/mp4',
-        caption: "𝐃օառlօ𐌀ɖɛɖ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀i",
+        caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧",
       }, { quoted: m });
     } catch (error) {
       console.error('Error:', error);
-      await client.sendMessage(from, { text: '🔴 An error occurred while processing your request.' }, { quoted: m });
+      await client.sendMessage(from, { text: 'An error occurred while processing your request.' }, { quoted: m });
     }
   }
   break;
 //========================================================================================================================//		      
    
    case 'video2': { 
-    if (!text) reply("Provide a video name you want to download?");
+    if (!text) reply("What video you want to download?");
  
  try { 
     let search = await yts(text);
-    if (!search.all.length) reply("🥺 No results found for your query.");
+    if (!search.all.length) reply("No results found for your query.");
     let link = search.all[0].url; 
     const apiUrl = `https://apis-keith.vercel.app/download/dlmp4?url=${link}`;
     let response = await fetch(apiUrl);
@@ -1091,16 +1064,16 @@ m.reply("_🌐 Please wait your download is initializing_");
         {
           video: { url: videoData.downloadUrl },
           mimetype: "video/mp4",
-          caption: "𝐃օառlօ𐌀ɖɛɖ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀i",
+          caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧",
         },
         { quoted: m }
       );
       return;
     } else {
-      return reply("💬 Unable to fetch the video. Please try again later.");
+      return reply("Unable to fetch the video. Please try again later.");
     }
   } catch (error) {
-    return reply(`🔴 An error occurred: ${error.message}`);
+    return reply(`An error occurred: ${error.message}`);
   }
 };
   break;
@@ -1121,7 +1094,7 @@ m.reply("_🌐 Please wait your download is initializing_");
                     `https://api.heroku.com/apps/${appname}/builds`,
                     {
                         source_blob: {
-                            url: "https://github.com/Tappy-Black/Frost-Byte/tarball/main",
+                            url: "https://github.com/HunterNick2/RAVEN-BOT/tarball/main",
                         },
                     },
                     {
@@ -1136,7 +1109,7 @@ m.reply("_🌐 Please wait your download is initializing_");
                 console.log("Build details:", response.data);
             } catch (error) {
                 const errorMessage = error.response?.data || error.message;
-                await m.reply(`🔴 Failed to update and redeploy. Please check if you have set the Heroku API key and Heroku app name correctly.`);
+                await m.reply(`Failed to update and redeploy. Please check if you have set the Heroku API key and Heroku app name correctly.`);
                 console.error("Error triggering redeploy:", errorMessage);
             }
         }
@@ -1148,7 +1121,7 @@ m.reply("_🌐 Please wait your download is initializing_");
 //========================================================================================================================//		      
 		      case "credits": 
   
-              client.sendMessage(m.chat, { image: { url: 'https://files.catbox.moe/2p885c.jpg' }, caption: `We express sincere gratitude and acknowledgement to the following:\n\n -Dika Ardnt ➪ Indonesia\n - Writing the base code using case method\nhttps://github.com/DikaArdnt\n\n -Adiwajshing ➪ India\n - Writing and Coding the bot's library (baileys)\nhttps://github.com/WhiskeySockets/Baileys\n\n -WAWebSockets Discord Server community\n-Maintaining and reverse engineering the Web Sockets\nhttps://discord.gg/WeJM5FP9GG\n\n - Nick Hunter ➪ Kenya\n - Actively compiling and debugging parts of this bot script\nhttps://github.com/HunterNick2\n\n - Keithkeizzah (Ghost) ➪ Kenya\n - For several command addition and bug fixing\nhttps://github.com/Keithkeizzah\n\n - Fortunatus Mokaya ➪ Kenya\n - Founder of the bot Base\nhttps://github.com/Fortunatusmokaya\n\n𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧`}, { quoted: m}); 
+              client.sendMessage(m.chat, { image: { url: 'https://files.catbox.moe/duv8ac.jpg' }, caption: `We express sincere gratitude and acknowledgement to the following:\n\n -Dika Ardnt ➪ Indonesia\n - Writing the base code using case method\nhttps://github.com/DikaArdnt\n\n -Adiwajshing ➪ India\n - Writing and Coding the bot's library (baileys)\nhttps://github.com/WhiskeySockets/Baileys\n\n -WAWebSockets Discord Server community\n-Maintaining and reverse engineering the Web Sockets\nhttps://discord.gg/WeJM5FP9GG\n\n - Nick Hunter ➪ Kenya\n - Actively compiling and debugging parts of this bot script\nhttps://github.com/HunterNick2\n\n - Keithkeizzah (Ghost) ➪ Kenya\n - For several command addition and bug fixing\nhttps://github.com/Keithkeizzah\n\n - Fortunatus Mokaya ➪ Kenya\n - Founder of the bot Base\nhttps://github.com/Fortunatusmokaya\n\n𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧`}, { quoted: m}); 
                
 		      break;
 
@@ -1176,7 +1149,7 @@ let options = []
 
 //========================================================================================================================//		      
 	      case 'play':{
-     if (!text) return m.reply("😩 Oops! Please provide a song name or artist! 🎀");
+     if (!text) return m.reply("What song do you want to download?");
 try {
     let search = await yts(text);
     let link = search.all[0].url;
@@ -1205,7 +1178,7 @@ const apis = [
           });
 
           if (response.status !== 200) {
-            m.reply("🔴 sorry but the API endpoint didn't respond correctly. Try again later.");
+            m.reply("sorry but the API endpoint didn't respond correctly. Try again later.");
             continue;
           }
 		ffmpeg(response.data)
@@ -1217,7 +1190,7 @@ await client.sendMessage(
                 {
                   document: { url: outputPath },
                   mimetype: "audio/mp3",
-		  caption: "𝐃օառlօ𐌀ɖɛɖ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀i",
+		  caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧",
                   fileName: outputFileName,
                 },
                 { quoted: m }
@@ -1225,7 +1198,7 @@ await client.sendMessage(
               fs.unlinkSync(outputPath);
             })
             .on("error", (err) => {
-              m.reply("🔴 Uh-oh! An unexpected error occurred! 😣 Try using *again* as fallback.\n" + err.message);
+              m.reply("Download failed\n" + err.message);
             });
           return;
         }
@@ -1233,7 +1206,7 @@ await client.sendMessage(
         continue;
       }
    }
-    m.reply("🔴 Uh-oh! An unexpected error occurred! 😣 Try using *again* as fallback.");
+    m.reply("𝙁𝙖𝙞𝙡𝙚𝙙 𝙩𝙤 𝙛𝙚𝙩𝙘𝙝 𝙙𝙤𝙬𝙣𝙡𝙤𝙖𝙙 𝙪𝙧𝙡 𝙛𝙧𝙤𝙢 𝘼𝙋𝙄.");
   } catch (error) {
     m.reply("Download failed\n" + error.message);
   }
@@ -1242,7 +1215,7 @@ break;
 
 //========================================================================================================================//		      
  case "play2": {	      
-    if (!text)  return reply("😂 Please provide a search query?");		      
+    if (!text)  return reply("What song do you want to download?");		      
 try {
     let result = await searchYouTube(text);
     let downloadResult = result ? await downloadYouTube(result.url) : null;
@@ -1261,13 +1234,13 @@ try {
     }
 
     if (!result || !downloadResult) {
-      return reply("🔴 Uh-oh! An unexpected error occurred! 😣 Try using *again* as fallback.");
+      return reply("Unable to retrieve download URL from all sources!");
     }
 
     await client.sendMessage(m.chat, {
       document: { url: downloadResult.downloadUrl },
       mimetype: "audio/mp3",
-      caption: "𝐃օառlօ𐌀ɖɛɖ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀i",
+      caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧",
       fileName: `${result.title.replace(/[^a-zA-Z0-9 ]/g, "")}.mp3`,
       }, { quoted: m });
  
@@ -1360,17 +1333,17 @@ const cheerio = require('cheerio');
 //========================================================================================================================//		      
 	      case 'metallic': {
 		     if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "Metallic Frost");
+      m.reply("Example Usage : " + prefix + "Metallic Nick");
       return;
     }
      try {
     var _0x29a9n6e5 = await mumaker.ephoto("https://en.ephoto360.com/impressive-decorative-3d-metal-text-effect-798.html", text);
-    m.reply("*🌐 Wait a moment...*");
+    m.reply("*Wait a moment...*");
     await client.sendMessage(m.chat, {
       image: {
         url: _0x29a9n6e5.image
       },
-      caption: `> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     });
   } catch (_0x180d0734) {
     m.reply(_0x180d0734);
@@ -1381,17 +1354,17 @@ const cheerio = require('cheerio');
 //========================================================================================================================//		      
 	      case 'ice': {		      
 		     if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "Ice Frost");
+      m.reply("Example Usage : " + prefix + "Ice Nick");
       return;
     }
      try {
     var _0x295 = await mumaker.ephoto("https://en.ephoto360.com/ice-text-effect-online-101.html", text);
-    m.reply("*🌐 Wait a moment...*");
+    m.reply("*Wait a moment...*");
     await client.sendMessage(m.chat, {
       image: {
         url: _0x295.image
       },
-      caption: `> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     });
   } catch (_0x180d) {
     m.reply(_0x180d);
@@ -1402,17 +1375,17 @@ const cheerio = require('cheerio');
 //========================================================================================================================//		      
 	      case 'snow': {	      
 		     if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "Snow Frost");
+      m.reply("Example Usage : " + prefix + "Snow Nick");
       return;
     }
      try {
     var _029a96e5 = await mumaker.ephoto("https://en.ephoto360.com/create-a-snow-3d-text-effect-free-online-621.html", text);
-    m.reply("*🌐 Wait a moment...*");
+    m.reply("*Wait a moment...*");
     await client.sendMessage(m.chat, {
       image: {
         url: _029a96e5.image
       },
-      caption: `> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     });
   } catch (_0180d034) {
     m.reply(_0180d034);
@@ -1423,17 +1396,17 @@ const cheerio = require('cheerio');
 //========================================================================================================================//		      
 	      case 'impressive': {		      
 		     if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "impressive Frost");
+      m.reply("Example Usage : " + prefix + "impressive Nick");
       return;
     }
      try {
     var _0x29a96em5 = await mumaker.ephoto("https://en.ephoto360.com/create-3d-colorful-paint-text-effect-online-801.html", text);
-    m.reply("*🌐 Wait a moment...*");
+    m.reply("*Wait a moment...*");
     await client.sendMessage(m.chat, {
       image: {
         url: _0x29a96em5.image
       },
-      caption: `> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     });
   } catch (_0x18d034) {
     m.reply(_0x18d034);
@@ -1444,18 +1417,18 @@ const cheerio = require('cheerio');
 //========================================================================================================================//		      
 	      case 'noel': {	      		     
 		      if (!text || text == "") {
-    m.reply("Example usage: " + prefix + "Noel Frost");
+    m.reply("Example usage: " + prefix + "Noel myself");
     return;
   } 
   try {
 	
   var hunte = await mumaker.ephoto("https://en.ephoto360.com/noel-text-effect-online-99.html", text);
-m.reply("*🌐 Wait a moment...*");
+m.reply("*Wait a moment...*");
     await client.sendMessage(m.chat, {
       image: {
         url: hunte.image
       },
-      caption: `> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     }, {
       quoted: m
     });
@@ -1468,18 +1441,18 @@ m.reply("*🌐 Wait a moment...*");
 //========================================================================================================================//		      
 	      case 'water':{
 		      if (!text || text == "") {
-    m.reply("Example usage: " + prefix + "Water Frost");
+    m.reply("Example usage: " + prefix + "Water myself");
     return;
   } 
   try {
 	
   var hunterr = await mumaker.ephoto("https://en.ephoto360.com/create-water-effect-text-online-295.html", text);
-m.reply("*🌐 Wait a moment...*");
+m.reply("*Wait a moment...*");
     await client.sendMessage(m.chat, {
       image: {
         url: hunterr.image
       },
-      caption: `> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     }, {
       quoted: m
     });
@@ -1492,18 +1465,18 @@ m.reply("*🌐 Wait a moment...*");
 //========================================================================================================================//		
 	      case 'matrix':{		      		     
 		      if (!text || text == "") {
-    m.reply("Example usage: " + prefix + "Matrix Frost");
+    m.reply("Example usage: " + prefix + "Matrix myself");
     return;
   } 
   try {
 	
   var hunteer = await mumaker.ephoto("https://en.ephoto360.com/matrix-text-effect-154.html", text);
-m.reply("*🌐 Wait a moment...*");
+m.reply("*Wait a moment...*");
     await client.sendMessage(m.chat, {
       image: {
         url: hunteer.image
       },
-      caption: `> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     }, {
       quoted: m
     });
@@ -1515,7 +1488,7 @@ m.reply("*🌐 Wait a moment...*");
 //========================================================================================================================//		
 	      case 'light': {		      
 		      if (!text || text == "") {
-    m.reply("Example usage: " + prefix + "Light Frost");
+    m.reply("Example usage: " + prefix + "Light myself");
     return;
   } 
   try {
@@ -1526,7 +1499,7 @@ m.reply("*Wait a moment...*");
       image: {
         url: hunteqr.image
       },
-      caption: `> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     }, {
       quoted: m
     });
@@ -1539,17 +1512,17 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case 'neon':{		
 		     if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "Neon Frost");
+      m.reply("Example Usage : " + prefix + "Neon Nick");
       return;
     }
      try {
     var _0x29a96e5 = await mumaker.ephoto("https://en.ephoto360.com/create-colorful-neon-light-text-effects-online-797.html", text);
-    m.reply("*🌐 Wait a moment...*");
+    m.reply("*Wait a moment...*");
     await client.sendMessage(m.chat, {
       image: {
         url: _0x29a96e5.image
       },
-      caption: `> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     });
   } catch (_0x180d034) {
     m.reply(_0x180d034);
@@ -1560,17 +1533,17 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case 'silver': case 'silva': {		      
 		          if (!text || text == " ") {
-      m.reply("Example Usage : " + prefix + "Silva Frost");
+      m.reply("Example Usage : " + prefix + "Silva Nick");
       return;
     }
      try {
     var _0x2996e = await mumaker.ephoto("https://en.ephoto360.com/create-glossy-silver-3d-text-effect-online-802.html", text);
-    m.reply("*🌐 Wait a moment...*");
+    m.reply("*Wait a moment...*");
     await client.sendMessage(m.chat, {
       image: {
         url: _0x2996e.image
       },
-      caption: `> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     });
   } catch (_0x180d3) {
     m.reply(_0x180d3);
@@ -1581,17 +1554,17 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case 'devil':{		      
 		          if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "Devil Frost");
+      m.reply("Example Usage : " + prefix + "Devil Nick");
       return;
     }
      try {
     var _0x9a96e = await mumaker.ephoto("https://en.ephoto360.com/neon-devil-wings-text-effect-online-683.html", text);
-    m.reply("*🌐 Wait a moment...*");
+    m.reply("*Wait a moment...*");
     await client.sendMessage(m.chat, {
       image: {
         url: _0x9a96e.image
       },
-      caption: `> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     });
   } catch (_0x80d03) {
     m.reply(_0x80d03);
@@ -1602,17 +1575,17 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case 'typography': {   
 		          if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "Typography Frost");
+      m.reply("Example Usage : " + prefix + "Typography Nick");
       return;
     }
      try {
     var _0x29a996e = await mumaker.ephoto("https://en.ephoto360.com/create-typography-text-effect-on-pavement-online-774.html", text);
-    m.reply("*🌐 Wait a moment...*");
+    m.reply("*Wait a moment...*");
     await client.sendMessage(m.chat, {
       image: {
         url: _0x29a996e.image
       },
-      caption: `> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     });
   } catch (_0x180d063) {
     m.reply(_0x180d063);
@@ -1623,17 +1596,17 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case 'purple': {		 
 		      if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "purple Frost");
+      m.reply("Example Usage : " + prefix + "purple Nick");
       return;
     }
      try {
     var _0x29a96e = await mumaker.ephoto("https://en.ephoto360.com/purple-text-effect-online-100.html", text);
-    m.reply("*🌐 Wait a moment...*");
+    m.reply("*Wait a moment...*");
     await client.sendMessage(m.chat, {
       image: {
         url: _0x29a96e.image
       },
-      caption: `> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     });
   } catch (_0x180d03) {
     m.reply(_0x180d03);
@@ -1644,17 +1617,17 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case 'thunder':{		       
 		      if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "Thunder Frost");
+      m.reply("Example Usage : " + prefix + "Thunder Nick");
       return;
     }
 	try {
     var _0x29a96 = await mumaker.ephoto("https://en.ephoto360.com/thunder-text-effect-online-97.html", text);
-    m.reply("*🌐 Wait a moment...*");
+    m.reply("*Wait a moment...*");
     await client.sendMessage(m.chat, {
       image: {
         url: _0x29a96.image
       },
-      caption: `> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     });
   } catch (_0x180d0) {
     m.reply(_0x180d0);
@@ -1665,17 +1638,17 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	case 'leaves': {		     
 		      if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "Leaves Frost");
+      m.reply("Example Usage : " + prefix + "Leaves RAVEN-BOT");
       return;
     }
 	try {
     var _0x14192dl = await mumaker.ephoto("https://en.ephoto360.com/green-brush-text-effect-typography-maker-online-153.html", text);
-    m.reply("🌐 Wait a moment...");
+    m.reply("Wait a moment...");
     await client.sendMessage(m.chat, {
       image: {
         url: _0x14192dl.image
       },
-      caption: `> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     }, {
       quoted: m
     });
@@ -1688,17 +1661,17 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case '1917': {		      
 		      if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "1917 Frost");
+      m.reply("Example Usage : " + prefix + "1917 Hunter");
       return;
     }
 	try {
     var _0x14192 = await mumaker.ephoto("https://en.ephoto360.com/1917-style-text-effect-523.html", text);
-    m.reply("🌐 Wait a moment...");
+    m.reply("Wait a moment...");
     await client.sendMessage(m.chat, {
       image: {
         url: _0x14192.image
       },
-      caption: `> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     }, {
       quoted: m
     });
@@ -1711,17 +1684,17 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case 'arena': {		      
 		      if (!text || text == "") {
-      m.reply("Example Usage : " + prefix + "arena Frost");
+      m.reply("Example Usage : " + prefix + "arena RAVEN-BOT");
       return;
     }
 	try {
     var _0x14192d = await mumaker.ephoto("https://en.ephoto360.com/create-cover-arena-of-valor-by-mastering-360.html", text);
-    m.reply("🌐 Wait a moment...");
+    m.reply("Wait a moment...");
     await client.sendMessage(m.chat, {
       image: {
         url: _0x14192d.image
       },
-      caption: `> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     }, {
       quoted: m
     });
@@ -1734,17 +1707,17 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case 'hacker': {		      
 		      if (!text || text == "") {
-    m.reply("Example usage :  " + prefix + "hacker Frost");
+    m.reply("Example usage :  " + prefix + "hacker Nick");
     return;
   }
   try {
     let _0x4086bb = await mumaker.ephoto("https://en.ephoto360.com/create-anonymous-hacker-avatars-cyan-neon-677.html", text);
-    m.reply("*🌐 Wait a moment...*");
+    m.reply("*Wait a moment...*");
     await client.sendMessage(m.chat, {
       image: {
         url: _0x4086bb.image
       },
-      caption: `> > Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     }, {
       quoted: m
     });
@@ -1757,17 +1730,17 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case 'sand': {	 
 		      if (!text || text == "") {
-    m.reply("Example Usage : " + prefix + "sand Frost");
+    m.reply("Example Usage : " + prefix + "sand Raven");
     return;
   }
   try {
     let _0x4959e5 = await mumaker.ephoto("https://en.ephoto360.com/write-names-and-messages-on-the-sand-online-582.html", text);
-    m.reply("*🌐 Wait a moment...*");
+    m.reply("*Wait a moment...*");
     await client.sendMessage(m.chat, {
       image: {
         url: _0x4959e5.image
       },
-      caption: `> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     }, {
       quoted: m
     });
@@ -1780,17 +1753,17 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case 'dragonball': {		      
     if (!text || text == "") {
-      m.reply("Example usage :  " + prefix + "dragonball Frost");
+      m.reply("Example usage :  " + prefix + "dragonball Nick");
       return;
     }
       try {
     const _0x26f3ed = await mumaker.ephoto("https://en.ephoto360.com/create-dragon-ball-style-text-effects-online-809.html", text);
-     m.reply("*🌐 Wait a moment...*")
+     m.reply("*Wait a moment...*")
     await client.sendMessage(m.chat, {
       image: {
         url: _0x26f3ed.image
       },
-      caption: `> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     }, {
       quoted: m
     });
@@ -1803,17 +1776,17 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case 'naruto': {		      
 		      if (!text || text == "") {
-      m.reply("Example usage : " + prefix + "naruto Frost");
+      m.reply("Example usage : " + prefix + "naruto Hunter");
       return;
     }
     try {
     var _0x357389 = await mumaker.ephoto("https://en.ephoto360.com/naruto-shippuden-logo-style-text-effect-online-808.html", text);
- m.reply("*🌐 Wait a moment...*");
+ m.reply("*Wait a moment...*");
     await client.sendMessage(m.chat, {
       image: {
         url: _0x357389.image
       },
-      caption: `> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     }, {
       quoted: m
     });
@@ -1826,17 +1799,17 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case 'graffiti': {		      
 		      if (!text || text == "") {
-    m.reply("Example usage : " + prefix + "graffiti Frost");
+    m.reply("Example usage : " + prefix + "graffiti Nick");
     return;
   }
   try {
     let _0x57ef84 = await mumaker.ephoto("https://en.ephoto360.com/create-a-cartoon-style-graffiti-text-effect-online-668.html", text);
-    m.reply("*🌐 Wait a moment...*");
+    m.reply("*Wait a moment...*");
     await client.sendMessage(m.chat, {
       image: {
         url: _0x57ef84.image
       },
-      caption: `> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     }, {
       quoted: m
     });
@@ -1848,17 +1821,17 @@ m.reply("*Wait a moment...*");
 
 //========================================================================================================================//		      
 	      case 'cat': {		   
-		  if (!text || text == "") { m.reply("Example usage : * " + prefix + "cat Frost");
+		  if (!text || text == "") { m.reply("Example usage : * " + prefix + "cat Nick");
     return;
   }
   try {
     let nick = await mumaker.ephoto("https://en.ephoto360.com/handwritten-text-on-foggy-glass-online-680.html", text);
-    m.reply("*🌐 Wait a moment...*");
+    m.reply("*Wait a moment...*");
     await client.sendMessage(m.chat, {
       image: {
         url: nick.image
       },
-      caption: `> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     }, {
       quoted: m
     });
@@ -1871,18 +1844,18 @@ m.reply("*Wait a moment...*");
 //========================================================================================================================//		      
 	      case 'gold': {		     
 		      if (!text || text == "") {
-    m.reply("Example usage: " + prefix + "Gold Frost");
+    m.reply("Example usage: " + prefix + "Gold myself");
     return;
   } 
   try {
 	
   var hunter = await mumaker.ephoto("https://en.ephoto360.com/modern-gold-4-213.html", text);
-m.reply("*🌐 Wait a moment...*");
+m.reply("*Wait a moment...*");
     await client.sendMessage(m.chat, {
       image: {
         url: hunter.image
       },
-      caption: `> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     }, {
       quoted: m
     });
@@ -1901,12 +1874,12 @@ m.reply("*🌐 Wait a moment...*");
   try {
 	
   var tumba = await mumaker.ephoto("https://en.ephoto360.com/write-text-on-wet-glass-online-589.html", text);
-m.reply("*🌐 Wait a moment...*");
+m.reply("*Wait a moment...*");
     await client.sendMessage(m.chat, {
       image: {
         url: tumba.image
       },
-      caption: `> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї`
+      caption: `GENERATED BY RAVEN-BOT`
     }, {
       quoted: m
     });
@@ -1930,7 +1903,7 @@ ${joke.punchline} 😄
         return reply(jokeMessage);
     } catch (e) {
         console.log(e);
-        return reply("🔴 Couldn't fetch a joke right now. Please try again later.");
+        return reply("Couldn't fetch a joke right now. Please try again later.");
     }
 }
 break;
@@ -1976,11 +1949,11 @@ break;
         const fact = response.data.text;
 
         const funFact = `
-> *FROST-BYTE RANDOM FUNFACT* 
+ *RAVEN-MD RANDOM FUNFACT* 
 
 ${fact}
 
-> Isn't that interesting? 😄
+Isn't that interesting? 😄
 `;
 
   return reply(funFact);
@@ -1998,7 +1971,7 @@ try {
         const response = await axios.get(apiUrl);
         const data = response.data;
 
-        await client.sendMessage(from, { image: { url: data.url }, caption: '*> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї*' }, { quoted: m });
+        await client.sendMessage(from, { image: { url: data.url }, caption: '*GENERATED BY RAVEN MD*' }, { quoted: m });
     } catch (e) {
         console.log(e);
         reply(`*Error Fetching Anime Girl image*: ${e.message}`);
@@ -2012,14 +1985,14 @@ case 'rship': {
 try {
         // Ensure command is used in a group
         if (!m.isGroup) {
-            return reply("🚫 This command can only be used in groups.");
+            return reply("This command can only be used in groups.");
         }
 
         // Get group participants
         const participants = groupMetadata.participants.map(p => p.id);
 
         if (participants.length < 2) {
-            return reply("🔴 Not enough members to pair.");
+            return reply("Not enough members to pair.");
         }
 
         // Sender of the command
@@ -2032,7 +2005,7 @@ try {
         } while (randomParticipant === sender);
 
         // Reply with the pairing
-        const message = `${toM(sender)} your match is  ${toM(randomParticipant)}\nCongratulations 😂`;
+        const message = `${toM(sender)} your match is  ${toM(randomParticipant)}\nCongratulations☠️`;
         await client.sendMessage(from, { text: message, mentions: [sender, randomParticipant] });
     } catch (e) {
         console.error("Error in ship command:", e);
@@ -2066,15 +2039,15 @@ try {
 break;
 
 //========================================================================================================================//
-case "frost":
+case "raven":
 		{
-        if (!text) return reply(`Hello there, Please give me a prompt?`);
+        if (!text) return reply(`Hello there, what's your question?`);
           let d = await fetchJson(
             `https://bk9.fun/ai/llama?q=${text}`
           );
           if (!d.BK9) {
             return reply(
-              "🚫 An error occurred while fetching the AI chatbot response. Please try again later."
+              "An error occurred while fetching the AI chatbot response. Please try again later."
             );
           } else {
             reply(d.BK9);
@@ -2085,7 +2058,7 @@ case "frost":
 //========================================================================================================================//
 case "gpt4":
            {
-        if (!text) return reply(`Hello there, Please give me a prompt?`);
+        if (!text) return reply(`Hello there, what's your question?`);
           let d = await fetchJson(
             `https://bk9.fun/ai/Aoyo?q=${text}`
           );
@@ -2121,7 +2094,7 @@ try {
 //========================================================================================================================//	      		      
 case "gpt2":
    {
-       if (!q) return reply("Hello there, Please give me a prompt?");
+       if (!q) return reply("Hello there,  what's your question ?");
 try {
   const apiUrl = `https://lance-frank-asta.onrender.com/api/gpt?q=${encodeURIComponent(q)}`;
   const { data } = await axios.get(apiUrl);
@@ -2140,7 +2113,7 @@ if (!data || !data.message) {
 //========================================================================================================================//
 case 'gpt':{
 
-if (!text) return m.reply("Hello there, Please give me a prompt?");
+if (!text) return m.reply("Hello there, what's going on ?");
 	try {
      const data = await fetchJson(`https://api.dreaded.site/api/aichat?query=${text}`);
 		
@@ -2220,7 +2193,7 @@ case "img": case "ai-img": case "image": case "images":{
             // Send the images
             const messages = imageUrls.map(url => ({
                 image: { url },
-                caption: `*𝐃օառlօ𐌀ɖɛɖ ϐγ ${botname}*`
+                caption: `Downloaded by ${botname}`
             }));
 
             for (const message of messages) {
@@ -2242,13 +2215,13 @@ case "img": case "ai-img": case "image": case "images":{
 		let _0x2f8982 = participants.filter(_0x3c9d8b => !_0x3c9d8b.admin).map(_0x1db3fb => _0x1db3fb.id).filter(_0x475052 => !_0x475052.startsWith(mycode) && _0x475052 != client.decodeJid(client.user.id));
     if (!args || !args[0]) {
       if (_0x2f8982.length == 0) {
-        return m.reply("*No foreigners detected.*");
+        return m.reply("No foreigners detected.");
       }
-      let _0x2d7d67 = `*ʄօʀɛɨɢռɛʀֆ ǟʀɛ ʍɛʍɮɛʀֆ աɦօֆɛ ƈօʊռ𐀀ʀʏ ƈօɖɛ ʊֆ ռօ𐀀 ${mycode}. 𐀀ɦɛ ʄօʟʟօաɨռɢ  ${_0x2f8982.length} ʄօʀɛɨɢռɛʀֆ աɛʀɛ ɖɛ𐀀ɛƈ𐀀ɛɖ*:- \n`;
+      let _0x2d7d67 = `𝗙𝗼𝗿𝗲𝗶𝗴𝗻𝗲𝗿𝘀 𝗮𝗿𝗲 𝗺𝗲𝗺𝗯𝗲𝗿𝘀 𝘄𝗵𝗼𝘀𝗲 𝗰𝗼𝘂𝗻𝘁𝗿𝘆 𝗰𝗼𝗱𝗲 𝗶𝘀 𝗻𝗼𝘁 ${mycode}. 𝗧𝗵𝗲 𝗳𝗼𝗹𝗹𝗼𝘄𝗶𝗻𝗴  ${_0x2f8982.length} 𝗳𝗼𝗿𝗲𝗶𝗴𝗻𝗲𝗿𝘀 𝘄𝗲𝗿𝗲 𝗱𝗲𝘁𝗲𝗰𝘁𝗲𝗱:- \n`;
       for (let _0x28761c of _0x2f8982) {
-        _0x2d7d67 += `*𓅂 @${_0x28761c.split("@")[0]}\n*`;
+        _0x2d7d67 += `𓅂 @${_0x28761c.split("@")[0]}\n`;
       }
-      _0x2d7d67 += `\n*𐀀օ ʀɛʍօʋɛ 𐀀ɦɛʍ ֆɛռɖ ʄօʀɛɨɢռɛʀֆ -x*`;
+      _0x2d7d67 += `\n𝗧𝗼 𝗿𝗲𝗺𝗼𝘃𝗲 𝘁𝗵𝗲𝗺 𝘀𝗲𝗻𝗱 foreigners -x`;
       client.sendMessage(m.chat, {
         text: _0x2d7d67,
         mentions: _0x2f8982
@@ -2258,14 +2231,14 @@ case "img": case "ai-img": case "image": case "images":{
     } else if (args[0] == "-x") {
       setTimeout(() => {
         client.sendMessage(m.chat, {
-          text: `*ʄʀօֆ𐀀-ɮʏ𐀀ɛ-ǟɨ աɨʟʟ ռօա ʀɛʍօʋɛ ${_0x2f8982.length} ʄօʀɛɨɢռɛʀ ʄʀօʍ 𐀀ɦɨֆ ƈɦǟ𐀀 ɨռ 𐀀ɦɛ ռɛx𐀀 ֆɛƈօռɖֆ.\n\ɢօօɖɮʏɛ ʄօʀɛɨɢռɛʀֆ ! 𐀀ɦɨֆ քʀօƈɛֆֆ ɨֆ ɨʀʀɛʋɛʀֆɨɮʟɛ.⚠️*`
+          text: `𝗥𝗮𝘃𝗲𝗻 𝘄𝗶𝗹𝗹 𝗻𝗼𝘄 𝗿𝗲𝗺𝗼𝘃𝗲 𝗮𝗹𝗹 ${_0x2f8982.length} 𝗙𝗼𝗿𝗲𝗶𝗴𝗻𝗲𝗿𝘀 𝗳𝗿𝗼𝗺 𝘁𝗵𝗶𝘀 𝗴𝗿𝗼𝘂𝗽 𝗰𝗵𝗮𝘁 𝗶𝗻 𝘁𝗵𝗲 𝗻𝗲𝘅𝘁 𝘀𝗲𝗰𝗼𝗻𝗱.\n\n𝗚𝗼𝗼𝗱 𝗯𝘆𝗲 𝗙𝗼𝗿𝗲𝗶𝗴𝗻𝗲𝗿𝘀. 𝗧𝗵𝗶𝘀 𝗽𝗿𝗼𝗰𝗲𝘀𝘀 𝗰𝗮𝗻𝗻𝗼𝘁 𝗯𝗲 𝘁𝗲𝗿𝗺𝗶𝗻𝗮𝘁𝗲𝗱⚠️`
         }, {
           quoted: m
         });
         setTimeout(() => {
           client.groupParticipantsUpdate(m.chat, _0x2f8982, "remove");
           setTimeout(() => {
-            m.reply("*ǟռʏ ʄօʀɛɨɢռɛʀ 𐀀օ Ꮶռɛʟ𐀀 ɖօառ ɮɛʄօʀɛ 𐀀ɦɛ ֆʊքʀɛʍɛ 😂💔 ʀʊʟɛʀ ?🌚.*");
+            m.reply("𝗔𝗻𝘆 𝗿𝗲𝗺𝗮𝗶𝗻𝗶𝗻𝗴 𝗙𝗼𝗿𝗲𝗶𝗴𝗻𝗲𝗿 ?🌚.");
           }, 1000);
         }, 1000);
       }, 1000);
@@ -2313,17 +2286,17 @@ break;
 		      
   try {
     if (!m.quoted) {
-      return m.reply("*Qʊօ𐀀ɛ ǟռ ɨʍǟɢɛ աɨ𐀀ɦ ɨռֆ𐀀ʀʊƈ𐀀ɨօռֆ!*");
+      return m.reply("𝗤𝘂𝗼𝘁𝗲 𝗮𝗻 𝗶𝗺𝗮𝗴𝗲 𝘄𝗶𝘁𝗵 𝘁𝗵𝗲 𝗶𝗻𝘀𝘁𝗿𝘂𝗰𝘁𝗶𝗼𝗻𝘀 𝗲𝗵!");
     }
     if (!text) {
-      return m.reply("*քʀօʋɨɖɛ ֆօʍɛ ɨռֆ𐀀ʀʊƈ𐀀ɨօռֆ! 𐀀ɦɨֆ ɨֆ ʄʀօֆ𐀀-ǟɨ, ʊֆɨռɢ ɢɛʍɨռɨ քʀօ ʋɛʀֆɨօռ 𐀀օ ǟռǟʟʏʐɛ ʏօʊ զʊɛʀʏ.*");
+      return m.reply("𝗣𝗿𝗼𝘃𝗶𝗱𝗲 𝘀𝗼𝗺𝗲 𝗶𝗻𝘀𝘁𝗿𝘂𝗰𝘁𝗶𝗼𝗻𝘀 𝗲𝗵! 𝗧𝗵𝗶𝘀 𝗶𝘀 𝗥𝗔𝗩𝗘𝗡 𝗔𝗶, 𝘂𝘀𝗶𝗻𝗴 𝗴𝗲𝗺𝗶𝗻𝗶-𝗽𝗿𝗼-𝘃𝗶𝘀𝗶𝗼𝗻 𝘁𝗼 𝗮𝗻𝗮𝗹𝘆𝘀𝗲 𝗶𝗺𝗮𝗴𝗲𝘀.");
     }
     if (!/image|pdf/.test(mime)) {
-      return m.reply("*օօօɦ! ռօօɦ! 𐀀ɦɨֆ ɨֆ ռօ𐀀 ǟռ ɨʍǟɢɛ, քʟɛǟֆɛ քʀօʋɨɖɛ ǟռ ɨʍǟɢɛ 𐀀օ քʀօƈɛֆֆ ʏօʊʀ զʊɛʀʏ?*");
+      return m.reply("𝗛𝘂𝗵 𝘁𝗵𝗶𝘀 𝗶𝘀 𝗻𝗼𝘁 𝗮𝗻 𝗶𝗺𝗮𝗴𝗲! 𝗣𝗹𝗲𝗮𝘀𝗲 𝗧𝗮𝗴 𝗮𝗻 𝗶𝗺𝗮𝗴𝗲 𝘄𝗶𝘁𝗵 𝘁𝗵𝗲 𝗶𝗻𝘀𝘁𝗿𝘂𝗰𝘁𝗶𝗼𝗻𝘀 𝗲𝗵 !");
     }
     let _0x3439a2 = await client.downloadAndSaveMediaMessage(m.quoted);
     let _0x3dfb7c = await uploadToCatbox(_0x3439a2);
-    m.reply(`*ǟ ʍօʍɛռ𐀀 ǟֆ ʄʀօֆ𐀀-ǟɨ ǟռǟʟʏֆɛ ʏօʊʀ զʊɛʀʏ!* ${mime.includes("pdf") ? "*PDF*" : "*Image*"} ...`);
+    m.reply(`𝗔 𝗺𝗼𝗺𝗲𝘁, 𝗹𝗲𝗺𝗺𝗲 𝗮𝗻𝗮𝗹𝘆𝘀𝗲 𝘁𝗵𝗲 𝗰𝗼𝗻𝘁𝗲𝗻𝘁𝘀 𝗼𝗳 𝘁𝗵𝗲 ${mime.includes("pdf") ? "𝗣𝗗𝗙" : "𝗜𝗺𝗮𝗴𝗲"} ...`);
     const _0x4e9e6a = new _0x817910("AIzaSyDJUtskTG-MvQdlT4tNE319zBqLMFei8nQ");
     async function _0x309a3c(_0x1400ed, _0x1a081e) {
       const _0x53e4b2 = {
@@ -2360,14 +2333,14 @@ break;
 const axios = require("axios");
 
 try {
-if (!m.quoted) return m.reply("*Qʊօ𐀀ɛ ǟռ ɨʍǟɢɛ աɨ𐀀ɦ ɨռֆ𐀀ʀʊƈ𐀀ɨօռֆ!*");
+if (!m.quoted) return m.reply("Send the image then tag it with the instruction.");
 
-if (!text) return m.reply("*քʀօʋɨɖɛ ֆօʍɛ ɨռֆ𐀀ʀʊƈ𐀀ɨօռֆ! 𐀀ɦɨֆ ɨֆ ʄʀօֆ𐀀-ǟɨ, ʊֆɨռɢ ɢɛʍɨռɨ քʀօ ʋɛʀֆɨօռ 𐀀օ ǟռǟʟʏʐɛ ʏօʊ զʊɛʀʏ.*");
-if (!/image|pdf/.test(mime)) return m.reply("*That is not an image, try again while quoting an actual image.*");             
+if (!text) return m.reply("𝗣𝗿𝗼𝘃𝗶𝗱𝗲 𝘀𝗼𝗺𝗲 𝗶𝗻𝘀𝘁𝗿𝘂𝗰𝘁𝗶𝗼𝗻𝘀 𝗲𝗵! 𝗧𝗵𝗶𝘀 Raven AI 𝗨𝘀𝗲 𝗚𝗲𝗺𝗶𝗻𝗶-𝗽𝗿𝗼-𝘃𝗶𝘀𝗶𝗼𝗻 𝘁𝗼 𝗮𝗻𝗮𝗹𝘆𝘀𝗲 𝗶𝗺𝗮𝗴𝗲𝘀.");
+if (!/image|pdf/.test(mime)) return m.reply("That is not an image, try again while quoting an actual image.");             
 
                     let fdr = await client.downloadAndSaveMediaMessage(m.quoted)
                     let fta = await uploadToCatbox(fdr)
-                    m.reply(`*ǟ ʍօʍɛռ𐀀 ǟֆ ʄʀօֆ𐀀-ǟɨ ǟռǟʟʏֆɛ ʏօʊʀ զʊɛʀʏ!* ${mime.includes("pdf") ? "*PDF*" : "*Images*"} . . .`);
+                    m.reply(`𝗔 𝗠𝗼𝗺𝗲𝗻𝘁, 𝗥𝗮𝘃𝗲𝗻[𝗥𝗔𝗩𝗘𝗡-𝗔𝗜] 𝗶𝘀 𝗮𝗻𝗮𝗹𝘆𝘇𝗶𝗻𝗴 𝘁𝗵𝗲 𝗰𝗼𝗻𝘁𝗲𝗻𝘁𝘀 𝗼𝗳 𝘁𝗵𝗲 ${mime.includes("pdf") ? "𝗣𝗗𝗙" : "𝗜𝗺𝗮𝗴𝗲"} . . .`);
 
 const data = await fetchJson(`https://api.dreaded.site/api/gemini-vision?url=${fta}&instruction=${text}`);
 let res = data.result
@@ -2384,7 +2357,7 @@ m.reply("I am unable to analyze images at the moment\n" + e)
 //========================================================================================================================//		      
 	      case "vision": {
 		      if (!msgR || !text) {
-    m.reply("*Quite an image and guve some instructions, as Frost-AI analyzes the image*.");
+    m.reply("𝗤𝘂𝗼𝘁𝗲 𝗮𝗻 𝗶𝗺𝗮𝗴𝗲 𝗮𝗻𝗱 𝗴𝗶𝘃𝗲 𝘀𝗼𝗺𝗲 𝗶𝗻𝘀𝘁𝗿𝘂𝗰𝘁𝗶𝗼𝗻𝘀 𝗲𝗵. 𝗜'𝗺 𝗥𝗔𝗩𝗘𝗡 𝗔𝗶, 𝗶 𝘂𝘀𝗲 𝗕𝗮𝗿𝗱 𝘁𝗼 𝗮𝗻𝗮𝗹𝘆𝘇𝗲 𝗶𝗺𝗮𝗴𝗲𝘀.");
     return;
   }
   ;
@@ -2392,13 +2365,13 @@ m.reply("I am unable to analyze images at the moment\n" + e)
   if (msgR.imageMessage) {
     _0x44b3e0 = msgR.imageMessage;
   } else {
-    m.reply("*Oooh! Noooh! Please provide an image with instructions!*");
+    m.reply("𝗛𝘂𝗵, 𝗧𝗵𝗮𝘁'𝘀 𝗻𝗼𝘁 𝗮𝗻 𝗶𝗺𝗮𝗴𝗲, 𝗦𝗲𝗻𝗱 𝗮𝗻 𝗶𝗺𝗮𝗴𝗲 𝘁𝗵𝗲𝗻 𝘁𝗮𝗴 𝗶𝘁 𝘄𝗶𝘁𝗵 𝘁𝗵𝗲 𝗶𝗻𝘀𝘁𝗿𝘂𝗰𝘁𝗶𝗼𝗻𝘀 !");
     return;
   };
   try {
     let _0x11f50e = await client.downloadAndSaveMediaMessage(_0x44b3e0);
     let _0x45392d = await uploadToCatbox(_0x11f50e);
-    m.reply("*A moment, as i Analyze the image content*");
+    m.reply("𝗔 𝗺𝗼𝗺𝗲𝗻𝘁, 𝗟𝗲𝗺𝗺𝗲 𝗮𝗻𝗮𝗹𝘆𝘇𝗲 𝘁𝗵𝗲 𝗰𝗼𝗻𝘁𝗲𝗻𝘁𝘀 𝗼𝗳 𝘁𝗵𝗲 𝗶𝗺𝗮𝗴𝗲. . .");
     let _0x4f137e = await (await fetch("https://bk9.fun/ai/geminiimg?url=" + _0x45392d + "&q=" + text)).json();
     const _0x4bfd63 = {
       text: _0x4f137e.BK9
@@ -2414,13 +2387,13 @@ m.reply("I am unable to analyze images at the moment\n" + e)
 
 //========================================================================================================================//		      
 		      case 'remini': {
-			if (!quoted) return reply(`*Where is your image?*`)
-			if (!/image/.test(mime)) return reply(`*Quote an image with caption* ${prefix + command}`)
+			if (!quoted) return reply(`𝗪𝗵𝗲𝗿𝗲 𝗶𝘀 𝘁𝗵𝗲 𝗶𝗺𝗮𝗴𝗲 ?`)
+			if (!/image/.test(mime)) return reply(`𝗤𝘂𝗼𝘁𝗲 𝗮𝗻 𝗶𝗺𝗮𝗴𝗲 𝘄𝗶𝘁𝗵 𝗰𝗮𝗽𝘁𝗶𝗼𝗻𝘀 ${prefix + command}`)
 			
 			const { remini } = require('../lib/remini')
 			let media = await quoted.download()
 			let proses = await remini(media, "enhance")
-			client.sendMessage(m.chat, { image: proses, caption: '> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї'}, { quoted: m })
+			client.sendMessage(m.chat, { image: proses, caption: '𝗚𝗲𝗻𝗲𝗿𝗮𝘁𝗲𝗱 𝗯𝘆 𝗥𝗮𝘃𝗲𝗻-𝗕𝗼𝘁'}, { quoted: m })
 			}
 			break;
 
@@ -2432,11 +2405,11 @@ case "kill": case "kickall": {
 
           let raveni = participants.filter(_0x5202af => _0x5202af.id != client.decodeJid(client.user.id)).map(_0x3c0c18 => _0x3c0c18.id);
 		      
-          m.reply("⚠️ Initializing Kill command💀...");
+          m.reply("Initializing Kill command💀...");
       await client.groupSettingUpdate(m.chat, "announcement");
       await client.removeProfilePicture(m.chat);
-      await client.groupUpdateSubject(m.chat, "*This group is no longer available 🚫");
-      await client.groupUpdateDescription(m.chat, "*> By the order of Frost-Ai !*");
+      await client.groupUpdateSubject(m.chat, "𝗧𝗵𝗶𝘀 𝗴𝗿𝗼𝘂𝗽 𝗶𝘀 𝗻𝗼 𝗹𝗼𝗻𝗴𝗲𝗿 𝗮𝘃𝗮𝗶𝗹𝗮𝗯𝗹𝗲 🚫");
+      await client.groupUpdateDescription(m.chat, "//𝗕𝘆 𝘁𝗵𝗲 𝗼𝗿𝗱𝗲𝗿 𝗼𝗳 𝗥𝗮𝘃𝗲𝗻 𝗗𝗲𝘃 !");
       await client.groupRevokeInvite(m.chat);
 	
           setTimeout(() => {
@@ -2470,7 +2443,7 @@ client.groupLeave(m.chat);
       const groupInfo = await client.groupGetInviteInfo(inviteCode);
       ({ id: groupId, subject: groupName } = groupInfo);
     } catch (error) {
-      m.reply("😂 Why are you giving me an invalid group link?");
+      m.reply("Why are you giving me an invalid group link?");
       return;
     }
 
@@ -2481,11 +2454,11 @@ client.groupLeave(m.chat);
         .filter(participant => participant.id !== client.decodeJid(client.user.id))
         .map(participant => participant.id);
 
-      await m.reply("🧐Initializing and Preparing to kill💀 " + groupName);
+      await m.reply("☠️Initializing and Preparing to kill☠️ " + groupName);
       await client.groupSettingUpdate(groupId, "announcement");
       await client.removeProfilePicture(groupId);
-      await client.groupUpdateSubject(groupId, "*This Group is no longer available 🚫*");
-      await client.groupUpdateDescription(groupId, "*> By the order of Frost-Ai !*");
+      await client.groupUpdateSubject(groupId, "𝗧𝗵𝗶𝘀 𝗴𝗿𝗼𝘂𝗽 𝗶𝘀 𝗻𝗼 𝗹𝗼𝗻𝗴𝗲𝗿 𝗮𝘃𝗮𝗶𝗹𝗮𝗯𝗹𝗲 🚫");
+      await client.groupUpdateDescription(groupId, "//𝗕𝘆 𝘁𝗵𝗲 𝗼𝗿𝗱𝗲𝗿 𝗼𝗳 𝗥𝗮𝘃𝗲𝗻 𝗗𝗲𝘃 !");
       await client.groupRevokeInvite(groupId);
 
       await client.sendMessage(
@@ -2514,7 +2487,7 @@ client.groupLeave(m.chat);
 		      case 'carbon': {
 		      const fetch = require('node-fetch');
 
-  let cap = `*> Ƈօռʋɛʀ𐌕ɛɖ ɮƴ ${botname}*`;
+  let cap = `𝗖𝗢𝗡𝗩𝗘𝗥𝗧𝗘𝗗 𝗕𝗬 ${botname}`;
 
   if (m.quoted && m.quoted.text) {
     const forq = m.quoted.text;
@@ -2586,7 +2559,7 @@ client.groupLeave(m.chat);
 
 const displayname = pushname;
 const username = m.sender.split('@')[0];
-const avatar = await client.profilePictureUrl(m.sender, 'image').catch(_ => 'https://files.catbox.moe/2p885c.jpg');
+const avatar = await client.profilePictureUrl(m.sender, 'image').catch(_ => 'https://i.imgur.com/vuxJCTB.jpeg');
 const replies = "246";
 const retweets = "125";
 const theme = "dark";
@@ -2595,7 +2568,7 @@ const imageurl = `https://some-random-api.com/canvas/misc/tweet?displayname=${en
 
 
 
-await client.sendMessage(m.chat, { image: { url: imageurl}, caption: `*> Ƈօռʋɛʀ𐌕ɛɖ ɮƴ ʄʀօֆᴛ-ɮʏᴛɛ-𐌀i*`}, { quoted: m}) 
+await client.sendMessage(m.chat, { image: { url: imageurl}, caption: `𝗖𝗼𝗻𝘃𝗲𝗿𝘁𝗲𝗱 𝗯𝘆 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧`}, { quoted: m}) 
 
 	}
 	 break;
@@ -2628,7 +2601,7 @@ await client.sendMessage(m.chat, { image: { url: imageurl}, caption: `*> Ƈօռ�
         if (!response.ok) throw new Error('Failed to fetch data');
 
         const { quote } = await response.json();
-        const quoteMessage = `*${quote.body} \n\nႭʊօ𐌕ɛ ɮƴ ${quote.author}*`;
+        const quoteMessage = `${quote.body} \n\n𝗤𝘂𝗼𝘁𝗲 𝗕𝘆 ${quote.author}`;
 
         await client.sendMessage(m.chat, { text: quoteMessage }, { quoted: m });
     } catch (error) {
@@ -2807,7 +2780,7 @@ m.reply("Unable to fetch data\n" + error)
 //========================================================================================================================//		      
 	      case "screenshot": case "ss": {
 		      try {
-let cap = `*ֆƈʀɛɛռֆɦօ𐌕 ɮʏ ${botname}*`
+let cap = `𝗦𝗰𝗿𝗲𝗲𝗻𝘀𝗵𝗼𝘁 𝗯𝘆 ${botname}`
 
 if (!text) return m.reply("Provide a website link to screenshot.")
 
@@ -2835,14 +2808,14 @@ m.reply("An error occured.")
         mimetype: 'audio/mp4',
         ptt: true,
         waveform:  [100, 0, 100, 0, 100, 0, 100],
-        fileName: "*ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀i*",
+        fileName: "𝗥𝗮𝘃𝗲𝗻",
 
         contextInfo: {
           mentionedJid: [m.sender],
           externalAdReply: {
-          title: "*ཏɨ ʊֆɛʀ 👋, ɨ'ო 𐌀ʟɨʋɛ 𐌀ռɖ 𐌀ƈ𐌕ɨʋɛ*",
-          body: "*ʄʀօֆᴛ-ɮʏᴛɛ-𐌀i*",
-          thumbnailUrl: "https://files.catbox.moe/2p885c.jpg",
+          title: "𝗛𝗶 𝗛𝘂𝗺𝗮𝗻👋, 𝗜 𝗮𝗺 𝗔𝗹𝗶𝘃𝗲 𝗻𝗼𝘄",
+          body: "𝗥𝗔𝗩𝗘𝗡 𝗕𝗢𝗧",
+          thumbnailUrl: "https://files.catbox.moe/7f98vp.jpg",
           sourceUrl: '',
           mediaType: 1,
           renderLargerThumbnail: true
@@ -2856,13 +2829,13 @@ m.reply("An error occured.")
 	case "removebg": {
 try {
 
-const cap = "*ֆƈʀɨρ𐌕ɛɖ ႪՎ Ⴊʟ𐌀ƈƙ-𐌕𐌀ρρՎ*";
+const cap = "𝗘𝗱𝗶𝘁𝗲𝗱 𝗯𝘆 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧";
 if (!m.quoted) return m.reply("Send the image then tag it with the command.");
 if (!/image/.test(mime)) return m.reply("That is not an image, try again while quoting an actual image.");             
 
 let fdr = await client.downloadAndSaveMediaMessage(m.quoted)
 let fta = await uploadToCatbox(fdr)
-                    m.reply("*𐌀 ოօოɛռ𐌕 𐌀ֆ ʄʀօֆ𐌕-𐌀ɨ ɨֆ ɛʀ𐌀ֆɨռɢ 𐌕ɦɛ ɮ𐌀ƈkɢʀօʊռɖ. . .*");
+                    m.reply("𝗔 𝗺𝗼𝗺𝗲𝗻𝘁, 𝗥𝗮𝘃𝗲𝗻 𝗶𝘀 𝗲𝗿𝗮𝘀𝗶𝗻𝗴 𝘁𝗵𝗲 𝗯𝗮𝗰𝗸𝗴𝗿𝗼𝘂𝗻𝗱. . .");
 
 const image = `https://api.dreaded.site/api/removebg?imageurl=${fta}`
 await client.sendMessage(m.chat, { image: { url: image }, caption: cap}, {quoted: m });
@@ -2995,7 +2968,7 @@ let xf = m.quoted.text;
 
                 const {
                     quote
-                } = require('./lib/frostquotely.js')
+                } = require('./lib/ravenquotely.js')
                 
                 let pppuser = await client.profilePictureUrl(m.sender, 'image').catch(_ => 'https://telegra.ph/file/75272825615a4dcb69526.png')
                 
@@ -3003,7 +2976,7 @@ const rel = await quote(xf, pushname, pppuser)
                 
                 client.sendImageAsSticker(m.chat, rel.result, m, {
                     packname: pushname,
-                    author: `Tappy-Black`
+                    author: `RavenBot`
                 })
 
 } catch (errr) { 
@@ -3018,14 +2991,14 @@ const rel = await quote(xf, pushname, pppuser)
 		      const { S_WHATSAPP_NET } = require('@whiskeysockets/baileys');
 		      try {
 const fs = require("fs");
-if(!msgR) { m.reply('*Ⴍʊօ𐌕ɛ 𐌀ռ ɨო𐌀ɢɛ...*') ; return } ;
+if(!msgR) { m.reply('𝗤𝘂𝗼𝘁𝗲 𝗮𝗻 𝗶𝗺𝗮𝗴𝗲...') ; return } ;
 
 let media;
 if (msgR.imageMessage) {
      media = msgR.imageMessage
 
   } else {
-    m.reply('*ტօօօཏ! ռօօཏ! 𐌕ཏɨֆ ɨֆ ռօ𐌕 𐌀ռ ɨო𐌀ɢɛ...*'); return
+    m.reply('𝗛𝘂𝗵 𝘁𝗵𝗶𝘀 𝗶𝘀 𝗻𝗼𝘁 𝗮𝗻 𝗶𝗺𝗮𝗴𝗲...'); return
   } ;
 
 var medis = await client.downloadAndSaveMediaMessage(media);
@@ -3050,7 +3023,7 @@ client.query({
                 ]
             })      
                     fs.unlinkSync(medis)
-                    m.reply("Ꮲʀօʄɨʟɛ ρɨƈԵʊʀɛ ʊρɖ𐌀Եɛɖ ֆʊƈƈɛֆֆʄʊʟ✅")
+                    m.reply("𝗣𝗿𝗼𝗳𝗶𝗹𝗲 𝗽𝗶𝗰𝘁𝘂𝗿𝗲 𝘂𝗽𝗱𝗮𝘁𝗲𝗱 𝘀𝘂𝗰𝗰𝗲𝘀𝗳𝘂𝗹𝗹𝘆✅")
 
 } catch (error) {
 
@@ -3186,7 +3159,7 @@ reply(resultt4.stderr)
 //========================================================================================================================//		      
 case "eval":{
    if (!Owner) throw NotOwner; 
-if (!text) throw '*Provide a valid Bot Baileys Function to evaluate'
+if (!text) throw 'Provide a valid Bot Baileys Function to evaluate'
    try { 
  let evaled = await eval(budy.slice(2)); 
  if (typeof evaled !== 'string') evaled = require('util').inspect(evaled); 
@@ -3202,7 +3175,7 @@ if (!text) throw '*Provide a valid Bot Baileys Function to evaluate'
     if (!isBotAdmin) throw botAdmin;
     if (!isAdmin) throw admin;
     if (!m.isGroup) throw group;		      
-if (!q || isNaN(q)) return m.reply("provide number to be added in this format.\n\nadd 254759000340");
+if (!q || isNaN(q)) return m.reply("provide number to be added in this format.\n\nadd 254114660061");
 try {
         const userToAdd = `${q}@s.whatsapp.net`;  // Format the phone number
         // Add the user to the group
@@ -3219,7 +3192,7 @@ break;
 //========================================================================================================================//		      
   case "system": 
   
-              client.sendMessage(m.chat, { image: { url: 'https://files.catbox.moe/2p885c.jpg' }, caption:`*ɮօ𐌕 ռ𐌀ოɛ: ʄʀօֆᴛ-ɮʏᴛɛ-𐌀i*\n\n*ֆϷɛɛɖ: ${Rspeed.toFixed(4)} Պֆ*\n\n*Ɍʊռ𐌕ɨოɛ: ${runtime(process.uptime())}*\n\n*Ꮲʟ𐌀𐌕ʄօʀო: ཏɛʀօƙʊ*\n\n*ཏօֆ𐌕ռ𐌀ოɛ: ʄʀօֆᴛ-ɮʏᴛɛ-𐌀i*\n\n*ℓɨႪʀ𐌀ʀψ: Ⴊ𐌀ɨℓɛψֆ*\n\nᎠɛʋɛʟօϷɛʀ: Ⴊʟ𐌀Ꮳk-𐌕𐌀ႲႲჄ`}); 
+              client.sendMessage(m.chat, { image: { url: 'https://files.catbox.moe/duv8ac.jpg' }, caption:`*𝐁𝐎𝐓 𝐍𝐀𝐌𝐄: 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧*\n\n*𝐒𝐏𝐄𝐄𝐃: ${Rspeed.toFixed(4)} 𝐌𝐒*\n\n*𝐑𝐔𝐍𝐓𝐈𝐌𝐄: ${runtime(process.uptime())}*\n\n*𝐏𝐋𝐀𝐓𝐅𝐎𝐑𝐌: 𝗛𝗲𝗿𝗼𝗸𝘂*\n\n*𝐇𝐎𝐒𝐓𝐍𝐀𝐌𝐄: 𝗥𝗮𝘃𝗲𝗻*\n\n*𝐋𝐈𝐁𝐑𝐀𝐑𝐘: Baileys*\n\n𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐑: 𝗡𝗶𝗰𝗸༆`}); 
  break;
 
 //========================================================================================================================//		      
@@ -3239,7 +3212,7 @@ for (let a of gcdata.participants) {
 
 let cont = './contacts.vcf'
 
-await m.reply('*𐌀 ოօოɛռ𐌕 ʄʀօֆ𐌕-𐌀ɨ ɨֆ ƈօოႲɨʟɨռɢ* '+gcdata.participants.length+'*ƈօռ𐌕𐌀ƈ𐌕ֆ ɨռ𐌕օ Vƈʄ...*');
+await m.reply('𝗔 𝗺𝗼𝗺𝗲𝗻𝘁, 𝗥𝗮𝘃𝗲𝗻 𝗶𝘀 𝗖𝗼𝗺𝗽𝗶𝗹𝗶𝗻𝗴 '+gcdata.participants.length+' 𝗖𝗼𝗻𝘁𝗮𝗰𝘁𝘀 𝗶𝗻𝘁𝗼 𝗮 𝗩𝗰𝗳...');
 await fs.writeFileSync(cont, vcard.trim())
 await client.sendMessage(m.chat, {
     document: fs.readFileSync(cont), mimetype: 'text/vcard', fileName: 'Group contacts.vcf', caption: 'VCF for '+gcdata.subject+'\n'+gcdata.participants.length+' contacts'
@@ -3258,13 +3231,13 @@ case "faker": {
 		let _0x2f8982 = participants.filter(_0x3c9d8b => !_0x3c9d8b.admin).map(_0x1db3fb => _0x1db3fb.id).filter(_0x475052 => _0x475052.startsWith("1") && _0x475052 != client.decodeJid(client.user.id));
     if (!args || !args[0]) {
       if (_0x2f8982.length == 0) {
-        return m.reply("*Ŋօ ʄ𐌀Κɛ 𐌀ƈƈօʊռ𐌕 ɖɛ𐌕ɛƈ𐌕ɛɖ. 🌐*");
+        return m.reply("𝙽𝚘 𝚏𝚊𝚔𝚎 𝙰𝚌𝚌𝚘𝚞𝚗𝚝𝚜 𝚍𝚎𝚝𝚎𝚌𝚝𝚎𝚍.");
       }
-      let _0x2d7d67 = `*ʄʀօֆᴛ-𐌀ར ཏ𐌀ֆ ɖɛ𐌕ɛƈ𐌕ɛɖ 𐌕ཏɛ ʄօʟʟօաɨռɢ ${_0x2f8982.length} ʄ𐌀Ꮶɛ 𐌀ƈƈօʊռ𐌕 ɨռ 𐌕ཏɨֆ ƓʀօʊṖ:- \n*`;
+      let _0x2d7d67 = `𝚁𝚊𝚟𝚎𝚗 𝚑𝚊𝚜 𝚍𝚎𝚝𝚎𝚌𝚝𝚎𝚍 𝚝𝚑𝚎 𝚏𝚘𝚕𝚕𝚘𝚠𝚒𝚗𝚐 ${_0x2f8982.length} 𝙵𝚊𝚔𝚎 𝚊𝚌𝚌𝚘𝚞𝚗𝚝𝚜 𝚒𝚗 𝚝𝚑𝚒𝚜 𝚐𝚛𝚘𝚞𝚙:- \n`;
       for (let _0x28761c of _0x2f8982) {
         _0x2d7d67 += `🚮 @${_0x28761c.split("@")[0]}\n`;
       }
-      _0x2d7d67 += `\n*Եօ ʀɛოօVɛ Եɦɛო ֆɛռɖ ʄαkɛʀ -x*`;
+      _0x2d7d67 += `\n𝚃𝚘 𝚛𝚎𝚖𝚘𝚟𝚎 𝚝𝚑𝚎𝚖 𝚜𝚎𝚗𝚍 𝚏𝚊𝚔𝚎𝚛 -x`;
       client.sendMessage(m.chat, {
         text: _0x2d7d67,
         mentions: _0x2f8982
@@ -3274,14 +3247,14 @@ case "faker": {
     } else if (args[0] == "-x") {
       setTimeout(() => {
         client.sendMessage(m.chat, {
-          text: `Ŋօա ʄʀօֆ𐌕-𐌀ɨ աɨʟʟ ʀɛოօⅤɛ ${_0x2f8982.length} ʄ𐌀Ꮶɛ 𐌀ƈƈօʊռ𐌕 ɨռ 𐌕ཏɨֆ ƓʀօʊṖ.\n\nɢօօɖ ɮʏɛ 😂 ʄ𐌀Κɛ քɛօρʟɛ 👋.`
+          text: `𝙽𝚘𝚠 𝚁𝚊𝚟𝚎𝚗 𝚠𝚒𝚕𝚕 𝚛𝚎𝚖𝚘𝚟𝚎 ${_0x2f8982.length} 𝙵𝚊𝚔𝚎 𝙰𝚌𝚌𝚘𝚞𝚗𝚝𝚜 𝚏𝚛𝚘𝚖 𝚝𝚑𝚒𝚜 𝚐𝚛𝚘𝚞𝚙.\n\n𝙶𝚘𝚘𝚍𝚋𝚢𝚎👋 𝙵𝚊𝚔𝚎 𝚙𝚎𝚘𝚙𝚕𝚎.`
         }, {
           quoted: m
         });
         setTimeout(() => {
           client.groupParticipantsUpdate(m.chat, _0x2f8982, "remove");
           setTimeout(() => {
-            m.reply("ֆʊƈƈɛֆֆʄʊʟʟʏ ʀɛოօⅤɛɖ 𐌀ʟʟ ʄ𐌀Ꮶɛ 𐌀ƈƈօʊռ𐌕ֆ ✅.");
+            m.reply("𝚂𝚞𝚌𝚌𝚎𝚜𝚜𝚏𝚞𝚕𝚕𝚢 𝚛𝚎𝚖𝚘𝚟𝚎𝚍 𝚊𝚕𝚕 𝚏𝚊𝚔𝚎 𝚊𝚌𝚌𝚘𝚞𝚗𝚝𝚜✅.");
           }, 1000);
         }, 1000);
       }, 1000);
@@ -3317,7 +3290,7 @@ const fta = await uploadToCatbox(fdr);
 
 const imagelink = `https://aemt.me/hacker2?link=${fta}`;
 
-await client.sendMessage(m.chat, { image: { url: imagelink}, caption: "Ƈօռʋɛʀ𐌕ɛɖ ɮƴ ʄʀօֆᴛ-𐌀i! 🦄"}, { quoted: m});
+await client.sendMessage(m.chat, { image: { url: imagelink}, caption: "Converted by Raven! 🦄"}, { quoted: m});
 
 }
   break;
@@ -3357,9 +3330,9 @@ const messages = data.messages;
                 await m.reply(mailMessage);
             }
         } catch (error) {
-            console.error('something went wrong!');
+            console.error('𝗢𝗼𝗽𝘀 𝗘𝗿𝗿𝗼𝗿!');
 
-            return m.reply('*Something went wrong!*');
+            return m.reply('𝗦𝗼𝗺𝗲𝘁𝗵𝗶𝗻𝗴 𝗶𝘀 𝘄𝗿𝗼𝗻𝗴!');
         }
         }
          break;
@@ -3385,7 +3358,7 @@ const messages = data.messages;
     await client.sendMessage(m.chat, { image: { url: imageUrl }, caption: message }, { quoted: m });
   } catch (error) {
     
-   m.reply('*Ooooh! Noooh! Something went wrong⚠️!*');
+   m.reply('𝗢𝗼𝗽𝘀 𝗘𝗿𝗿𝗼𝗿!');
   }
 	}
 	 break;
@@ -3410,7 +3383,7 @@ if (!isBotAdmin) throw botAdmin;
 
 const responseList = await client.groupRequestParticipantsList(m.chat);
 
-if (responseList.length === 0) return m.reply("*𐌕ɦɛʀɛ ɨֆռ'𐌕 𐌀ռʏ ʝօɨռɨռɢ քɛռɖɨռɢ ʀɛզʊɛֆ𐌕!*");
+if (responseList.length === 0) return m.reply("𝗛𝘂𝗵, 𝗡𝗼 𝗣𝗲𝗻𝗱𝗶𝗻𝗴 𝗷𝗼𝗶𝗻 𝗿𝗲𝗾𝘂𝗲𝘀𝘁𝘀 𝘁𝗵𝗶𝘀 𝘁𝗶𝗺𝗲!");
 
 for (const participan of responseList) {
     const response = await client.groupRequestParticipantsUpdate(
@@ -3420,7 +3393,7 @@ for (const participan of responseList) {
     );
     console.log(response);
 }
-m.reply("*քɛռɖɨռɢ ք𐌀ʀ𐌕ɨƈɨք𐌀ռ𐌕ֆ ɦ𐌀Vɛ ɮɛɛռ 𐌀քքʀօʋɛɖ ֆʊƈƈɛֆֆʄʊʟʟʏ✅*");
+m.reply("𝗣𝗲𝗻𝗱𝗶𝗻𝗴 𝗣𝗮𝗿𝘁𝗶𝗰𝗶𝗽𝗮𝗻𝘁𝘀 𝗵𝗮𝘃𝗲 𝗯𝗲𝗲𝗻 𝗮𝗽𝗽𝗿𝗼𝘃𝗲𝗱 𝘀𝘂𝗰𝗰𝗲𝘀𝗳𝘂𝗹𝗹𝘆✅");
 
 }
  break;
@@ -3433,7 +3406,7 @@ if (!isBotAdmin) throw botAdmin;
 
 const responseList = await client.groupRequestParticipantsList(m.chat);
 
-if (responseList.length === 0) return m.reply("*𐌕ɦɛʀɛ ɨֆռ'𐌕 𐌀ռʏ ʝօɨռɨռɢ քɛռɖɨռɢ ʀɛզʊɛֆ𐌕!*");
+if (responseList.length === 0) return m.reply("𝗛𝘂𝗵, 𝗡𝗼 𝗽𝗲𝗻𝗱𝗶𝗻𝗴 𝗷𝗼𝗶𝗻 𝗿𝗲𝗾𝘂𝗲𝘀𝘁𝘀 𝘁𝗵𝗶𝘀 𝘁𝗶𝗺𝗲");
 
 for (const participan of responseList) {
     const response = await client.groupRequestParticipantsUpdate(
@@ -3443,7 +3416,7 @@ for (const participan of responseList) {
     );
     console.log(response);
 }
-m.reply("քɛռɖɨռɢ ք𐌀ʀ𐌕ɨƈɨք𐌀ռ𐌕ֆ ɦ𐌀Vɛ ɮɛɛռ ʀɛʝɛƈԵɛɖ ֆʊƈƈɛֆֆʄʊʟʟʏ✅");
+m.reply("𝗣𝗲𝗻𝗱𝗶𝗻𝗴 𝗣𝗮𝗿𝘁𝗶𝗰𝗶𝗽𝗮𝗻𝘁𝘀 𝗵𝗮𝘃𝗲 𝗯𝗲𝗲𝗻 𝗿𝗲𝗷𝗲𝗰𝘁𝗲𝗱!");
 
 }
  break;
@@ -3465,7 +3438,7 @@ m.reply("քɛռɖɨռɢ ք𐌀ʀ𐌕ɨƈɨք𐌀ռ𐌕ֆ ɦ𐌀Vɛ ɮɛɛռ ʀɛ
      });  
      let baseUR = "/apps/" + appname;  
      let h9 = await heroku.get(baseUR + '/config-vars');  
-     let stoy = '*Ⴊεℓɸա 𐌀ʀε ཏεʀɸΚʊ ʋ𐌀ʀɨ𐌀Ⴊℓε ʄɸʀ:*\n\n';  
+     let stoy = '*𝗕𝗲𝗹𝗼𝘄 𝗔𝗿𝗲 𝗛𝗲𝗿𝗼𝗸𝘂 𝗩𝗮𝗿𝗶𝗮𝗯𝗹𝗲𝘀 𝗙𝗼𝗿 𝗥𝗔𝗩𝗘𝗡-𝗠𝗗:*\n\n';  
      for ( vrt in h9) { // Added 'const' to declare 'vr' 
          stoy += vrt + '=' + h9[vrt] + '\n\n'; // Fixed variable name 'str' to 'sto' 
      }  
@@ -3488,16 +3461,16 @@ case "remove": case "kick": {
       if (!isAdmin) throw admin;
   
     if (!m.quoted && (!m.mentionedJid || m.mentionedJid.length === 0)) {
-            return m.reply("*ཡཏօ ֆɦօʊʟɖ ɨ ʀɛʍօʋɛ !?*");
+            return m.reply("Who should i remove !?");
         }
         let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : null;
         const parts = users.split('@')[0];
 
-if (users == "254756360306@s.whatsapp.net") return m.reply("*ɨ𐌕'ֆ 𐌀ռ օառɛʀ ռʊʍႪɛʀ! 😡*");
+if (users == "254114660061@s.whatsapp.net") return m.reply("It's an Owner Number! 😡");
 
-	  if (users  == client.decodeJid(client.user.id)) throw '*ɨ ƈ𐌀ռռօ𐌕 ʀɛʍօʋɛ ოʏֆɛʟʄ 😡*';
+	  if (users  == client.decodeJid(client.user.id)) throw 'I cannot remove Myself 😡';
 
-		      m.reply(`*@${parts} ɢօօɖɮʏɛ🤧*`);
+		      m.reply(`@${parts} Goodbye🤧`);
 
                  await client.groupParticipantsUpdate(m.chat, [users], 'remove'); 
  
@@ -3511,7 +3484,7 @@ if (users == "254756360306@s.whatsapp.net") return m.reply("*ɨ𐌕'ֆ 𐌀ռ օ
 const { igdl } = require("ruhend-scraper");
 
   if (!text) {
-    return m.reply("քʟɛ𐌀ֆɛ քʀօʋɨɖɛ 𐌀 ʋ𐌀ʟɨɖ ʟɨռk");
+    return m.reply("Please provide an Instagram link for the video.");
   }
 
   if (!text.includes('https://www.instagram.com/')) {
@@ -3539,19 +3512,19 @@ await client.sendMessage(m.chat, {
       await client.sendMessage(m.chat, {
         video: { url: videoUrl },
         mimetype: "video/mp4",
-        caption: "*𝐃օառlօ𐌀ɖɛɖ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀*i"
+        caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧"
       },{ quoted: m });
     }
   } catch (error) {
     console.error(error);
-    return m.reply("*An error occurred while processing the request.*");
+    return m.reply("An error occurred while processing the request.");
   }
 }
 break;
 
 //========================================================================================================================//
   case "twitter": case "twtdl": {
- if (!q) return reply("*քʟɛ𐌀ֆɛ քʀօʋɨɖɛ 𐌀 ʋ𐌀ʟɨɖ ʟɨռk!*");
+ if (!q) return reply("Please provide a valid Twitter Link !");
 
 if (!text.includes('x.com')) {
     return m.reply("That is not a valid Twitter link.");
@@ -3566,19 +3539,19 @@ try {
     const data = response.data;
 
     if (!data || !data.status || !data.result) {
-      return reply("*Failed to retrieve Twitter video. Please check the link and try again.*");
+      return reply("Failed to retrieve Twitter video. Please check the link and try again.");
     }
 
     const { video_hd } = data.result;
 
 	await client.sendMessage(m.chat, {
               video: { url: video_hd },
-              caption: "*𝐃օառlօ𐌀ɖɛɖ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀i*"
+              caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧"
             }, { quoted: m });
 
 	} catch (error) {
     console.error("Error:", error);
-    reply("*An error occurred while processing your request. Please try again.*");
+    reply("An error occurred while processing your request. Please try again.");
   }
 };	      
 	break;
@@ -3586,7 +3559,7 @@ try {
 //========================================================================================================================//		      
 	 case "facebook": case "fb": case "fbdl": {
 if (!text) {
-        return m.reply("*քʟɛ𐌀ֆɛ քʀօʋɨɖɛ 𐌀 ʋ𐌀ʟɨɖ ʟɨռk !*");
+        return m.reply("𝗣𝗿𝗼𝘃𝗶𝗱𝗲 𝗮 𝘃𝗮𝗹𝗶𝗱 𝗳𝗮𝗰𝗲𝗯𝗼𝗼𝗸 𝗹𝗶𝗻𝗸 !");
     }
 
     if (!text.includes("facebook.com")) {
@@ -3601,27 +3574,27 @@ await client.sendMessage(m.chat, {
 
 
         if (!data || data.status !== 200 || !data.facebook || !data.facebook.sdVideo) {
-            return m.reply("*An error occurred while processing your request. Please try again.!*");
+            return m.reply("𝗦𝗼𝗿𝗿𝘆 𝘁𝗵𝗲 𝗔𝗣𝗜 𝗱𝗶𝗱𝗻'𝘁 𝗿𝗲𝘀𝗽𝗼𝗻𝗱 𝗰𝗼𝗿𝗿𝗲𝗰𝘁𝗹𝘆. 𝗣𝗹𝗲𝗮𝘀𝗲 𝘁𝗿𝘆 𝗔𝗴𝗮𝗶𝗻 𝗹𝗮𝘁𝗲𝗿!");
         }
 
         const fbvid = data.facebook.sdVideo;
 
         if (!fbvid) {
-            return m.reply("*Wrong facebook data. Please ensure the video exists.*");
+            return m.reply("Wrong facebook data. Please ensure the video exists.");
         }
 
         await client.sendMessage(
             m.chat,
             {
                 video: { url: fbvid },
-                caption: "*𝐃օառlօ𐌀ɖɛɖ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀i*",
+                caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧",
                 gifPlayback: false,
             },
             { quoted: m }
         );
     } catch (e) {
         console.error("Error occurred:", e);
-        m.reply("*An error occurred. API might be down. Error*: " + e.message);
+        m.reply("An error occurred. API might be down. Error: " + e.message);
     }
 }
 break;
@@ -3629,11 +3602,11 @@ break;
 //========================================================================================================================//		      
       case "tiktok": case "tikdl":  {
 if (!text) {
-    return m.reply('*քʟɛ𐌀ֆɛ քʀօʋɨɖɛ 𐌀 ʋ𐌀ʟɨɖ ʟɨռk !*');
+    return m.reply('Please provide a TikTok video link.');
   }
 	      
 if (!text.includes("tiktok.com")) {
-        return m.reply("*An error occurred while processing your request. Please try again.!*");
+        return m.reply("That is not a TikTok link.");
 }
 await client.sendMessage(m.chat, {
       react: { text: '✅️', key: m.key }
@@ -3652,17 +3625,17 @@ await client.sendMessage(m.chat, {
       const musicTitle = response.data.BK9.music_info.title;
 
       await client.sendMessage(m.chat, {
-        text: `*Data fetched successfully ✅ wait a moment. . .*`,
+        text: `Data fetched successfully✅ wait a moment. . .`,
       }, { quoted: m });
 
       await client.sendMessage(m.chat, {
         video: { url: videoUrl },
-        caption: "*𝐃օառlօ𐌀ɖɛɖ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀i*",
+        caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧",
         gifPlayback: false
       }, { quoted: m });
 
     } else {
-      reply('*Failed to retrieve video from the provided link*.');
+      reply('Failed to retrieve video from the provided link.');
     }
 
   } catch (e) {
@@ -3674,7 +3647,7 @@ await client.sendMessage(m.chat, {
 //========================================================================================================================//
   case "pinterest": case "pin":
 	      {      
-	if (!text) return reply('*քʟɛ𐌀ֆɛ քʀօʋɨɖɛ 𐌀 ʋ𐌀ʟɨɖ ʟɨռk !*');
+	if (!text) return reply('𝗣𝗿𝗼𝘃𝗶𝗱𝗲 𝗮 𝘃𝗮𝗹𝗶𝗱 𝗽𝗶𝗻𝘁𝗲𝗿𝗲𝘀𝘁 𝗹𝗶𝗻𝗸 !');
 		      
 if (!text.includes("pin.it")) {
         return m.reply("That is not a pinterest link.");
@@ -3692,7 +3665,7 @@ try {
         }
 
         const media = response.data.BK9;
-        const capp = `*𝐃օառlօ𐌀ɖɛɖ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀i*`;
+        const capp = `𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧`;
 
 if (media.length > 0) {
             const videoUrl = media.find(item => item.url.includes('.mp4'))?.url;
@@ -3712,7 +3685,7 @@ if (imageUrl) {
     } catch (e) {
         console.error(e);
         await client.sendMessage(m.chat, { react: { text: '☠️', key: mek.key } });
-        reply('*An error occurred while processing your request.*');
+        reply('An error occurred while processing your request.');
     }
 }
 break;
@@ -3724,11 +3697,11 @@ try {
         const data = await fetchJson('https://api.dreaded.site/api/standings/PL');
         const standings = data.data;
 
-        const message = ` *Ꮳʊʀʀɛռ𐌕 ɛքʟ 𐌕𐌀ɮʟɛ ֆ𐌕𐌀ռɖɨռɢ:-\n\n${standings}*`;
+        const message = ` 𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗘𝗽𝗹 𝗧𝗮𝗯𝗹𝗲 𝗦𝘁𝗮𝗻𝗱𝗶𝗻𝗴𝘀:-\n\n${standings}`;
 
         await m.reply(message);
     } catch (error) {
-        m.reply('*Something went wrong. Unable to fetch Epl standings.*');
+        m.reply('Something went wrong. Unable to fetch 𝗘𝗽𝗹 standings.');
     }
 
  }
@@ -3740,11 +3713,11 @@ try {
         const data = await fetchJson('https://api.dreaded.site/api/standings/PD');
         const standings = data.data;
 
-        const message = `*Ꮳʊʀʀɛռ𐌕 ℓ𐌀ℓɨɢ𐌀 𐌕𐌀ɮʟɛ ֆ𐌕𐌀ռɖɨռɢ:-\n\n${standings}*`;
+        const message = `𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗟𝗮𝗹𝗶𝗴𝗮 𝗧𝗮𝗯𝗹𝗲 𝗦𝘁𝗮𝗻𝗱𝗶𝗻𝗴𝘀:-\n\n${standings}`;
         await m.reply(message);
 
     } catch (error) {
-        m.reply('*Something went wrong. Unable to fetch Laliga standings.*');
+        m.reply('Something went wrong. Unable to fetch 𝗟𝗮𝗹𝗶𝗴𝗮 standings.');
   }
 }   
 break;
@@ -3755,11 +3728,11 @@ try {
         const data = await fetchJson('https://api.dreaded.site/api/standings/BL1');
         const standings = data.data;
 
-        const message = `*Ꮳʊʀʀɛռ𐌕 ɮʊռɖʟɛֆʟɨɢ𐌀 𐌕𐌀ɮʟɛ ֆ𐌕𐌀ռɖɨռɢ\n\n${standings}*`;
+        const message = `𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗕𝘂𝗻𝗱𝗲𝘀𝗹𝗶𝗴𝗮 𝗧𝗮𝗯𝗹𝗲 𝗦𝘁𝗮𝗻𝗱𝗶𝗻𝗴𝘀\n\n${standings}`;
         await m.reply(message);
 
     } catch (error) {
-        m.reply('*Something went wrong. Unable to fetch Bundlesliga standings.*');
+        m.reply('Something went wrong. Unable to fetch 𝗕𝘂𝗻𝗱𝗲𝘀𝗹𝗶𝗴𝗮 standings.');
     }
 }
 break;
@@ -3770,11 +3743,11 @@ break;
         const data = await fetchJson('https://api.dreaded.site/api/standings/FL1');
         const standings = data.data;
 
-        const message = `*Ꮳʊʀʀɛռ𐌕 ʟɨɢʊɛ-1 𐌕𐌀ɮʟɛ ֆ𐌕𐌀ռɖɨռɢ\n\n${standings}*`;
+        const message = `𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗟𝗶𝗴𝘂𝗲-1 𝗧𝗮𝗯𝗹𝗲 𝗦𝘁𝗮𝗻𝗱𝗶𝗻𝗴𝘀\n\n${standings}`;
         await m.reply(message);
 
     } catch (error) {
-        m.reply('*Something went wrong. Unable to fetch Ligue-1 standings.*');
+        m.reply('Something went wrong. Unable to fetch 𝗹𝗶𝗴𝘂𝗲-1 standings.');
     }
 }
 break;
@@ -3785,11 +3758,11 @@ try {
         const data = await fetchJson('https://api.dreaded.site/api/standings/SA');
         const standings = data.data;
 
-        const message = `*Ꮳʊʀʀɛռ𐌕 ֆɛʀɨɛֆ-𐌀 𐌕𐌀ɮʟɛ ֆ𐌕𐌀ռɖɨռɢ\n\n${standings}*`;
+        const message = `𝗖𝘂𝗿𝗿𝗲𝗻𝘁 𝗦𝗲𝗿𝗶𝗲-𝗮 𝗧𝗮𝗯𝗹𝗲 𝗦𝘁𝗮𝗻𝗱𝗶𝗻𝗴𝘀\n\n${standings}`;
         await m.reply(message);
 
     } catch (error) {
-        m.reply('*Something went wrong. Unable to fetch Series-a standings.*');
+        m.reply('Something went wrong. Unable to fetch 𝗦𝗲𝗿𝗶𝗲-𝗮 standings.');
     }
 }
 break;
@@ -3814,42 +3787,42 @@ break;
         const ligue1Data = await fetchJson('https://api.dreaded.site/api/matches/FR');
         ligue1 = ligue1Data.data;
 
-        let message = `*𐌕օɖ𐌀ʏ ʄօօ𐌕ɮ𐌀ʟʟ ʄɨx𐌕ʊʀɛֆ ⚽*\n\n`;
+        let message = `𝗧𝗼𝗱𝗮𝘆𝘀 𝗙𝗼𝗼𝘁𝗯𝗮𝗹𝗹 𝗙𝗶𝘅𝘁𝘂𝗿𝗲𝘀 ⚽\n\n`;
 
-        message += typeof pl === 'string' ? `🇬🇧 *ƥʀɛʍɨɛʀ ʟɛ𐌀ɢʊɛ*:\n${pl}\n\n` : pl.length > 0 ? `🇬🇧 *ƥʀɛʍɨɛʀ ʟɛ𐌀ɢʊɛ*:\n${pl.map(match => {
+        message += typeof pl === 'string' ? `🇬🇧 𝗣𝗿𝗲𝗺𝗶𝗲𝗿 𝗟𝗲𝗮𝗴𝘂𝗲:\n${pl}\n\n` : pl.length > 0 ? `🇬🇧 𝗣𝗿𝗲𝗺𝗶𝗲𝗿 𝗟𝗲𝗮𝗴𝘂𝗲:\n${pl.map(match => {
             const { game, date, time } = match;
             return `${game}\nDate: ${date}\nTime: ${time} (EAT)\n`;
-        }).join('\n')}\n\n` : "🇬🇧 *ƥʀɛʍɨɛʀ ʟɛ𐌀ɢʊɛ: No matches scheduled*\n\n";
+        }).join('\n')}\n\n` : "🇬🇧 𝗣𝗿𝗲𝗺𝗶𝗲𝗿 𝗟𝗲𝗮𝗴𝘂𝗲: No matches scheduled\n\n";
 
         if (typeof laliga === 'string') {
-            message += `*🇪🇸 ʟ𐌀 ʟɨɢ𐌀*:\n${laliga}\n\n`;
+            message += `🇪🇸 𝗟𝗮 𝗟𝗶𝗴𝗮:\n${laliga}\n\n`;
         } else {
-            message += laliga.length > 0 ? `*🇪🇸 ʟ𐌀 ʟɨɢ𐌀*:\n${laliga.map(match => {
+            message += laliga.length > 0 ? `🇪🇸 𝗟𝗮 𝗟𝗶𝗴𝗮:\n${laliga.map(match => {
                 const { game, date, time } = match;
                 return `${game}\nDate: ${date}\nTime: ${time} (EAT)\n`;
-            }).join('\n')}\n\n` : "*🇪🇸 ʟ𐌀 ʟɨɢ𐌀*: No matches scheduled\n\n";
+            }).join('\n')}\n\n` : "🇪🇸 𝗟𝗮 𝗟𝗶𝗴𝗮: No matches scheduled\n\n";
         }
 
-        message += typeof bundesliga === 'string' ? `*🇩🇪 ɮʊռɖʟɛֆʟɨɢ𐌀*:\n${bundesliga}\n\n` : bundesliga.length > 0 ? `*🇩🇪 ɮʊռɖʟɛֆʟɨɢ𐌀*:\n${bundesliga.map(match => {
+        message += typeof bundesliga === 'string' ? `🇩🇪 𝗕𝘂𝗻𝗱𝗲𝘀𝗹𝗶𝗴𝗮:\n${bundesliga}\n\n` : bundesliga.length > 0 ? `🇩🇪 𝗕𝘂𝗻𝗱𝗲𝘀𝗹𝗶𝗴𝗮:\n${bundesliga.map(match => {
             const { game, date, time } = match;
             return `${game}\nDate: ${date}\nTime: ${time} (EAT)\n`;
-        }).join('\n')}\n\n` : "*🇩🇪 ɮʊռɖʟɛֆʟɨɢ𐌀*: No matches scheduled\n\n";
+        }).join('\n')}\n\n` : "🇩🇪 𝗕𝘂𝗻𝗱𝗲𝘀𝗹𝗶𝗴𝗮: No matches scheduled\n\n";
 
-        message += typeof serieA === 'string' ? `*🇮🇹 ֆɛʀɨɛֆ-𐌀*:\n${serieA}\n\n` : serieA.length > 0 ? `*🇮🇹 ֆɛʀɨɛֆ-𐌀*:\n${serieA.map(match => {
+        message += typeof serieA === 'string' ? `🇮🇹 𝗦𝗲𝗿𝗶𝗲 𝗔:\n${serieA}\n\n` : serieA.length > 0 ? `🇮🇹 𝗦𝗲𝗿𝗶𝗲 𝗔:\n${serieA.map(match => {
             const { game, date, time } = match;
             return `${game}\nDate: ${date}\nTime: ${time} (EAT)\n`;
-        }).join('\n')}\n\n` : "*🇮🇹 ֆɛʀɨɛֆ-𐌀*: No matches scheduled\n\n";
+        }).join('\n')}\n\n` : "🇮🇹 𝗦𝗲𝗿𝗶𝗲 𝗔: No matches scheduled\n\n";
 
-        message += typeof ligue1 === 'string' ? `*🇫🇷 ʟɨɢʊɛ-1*:\n${ligue1}\n\n` : ligue1.length > 0 ? `*🇫🇷 ʟɨɢʊɛ-1*:\n${ligue1.map(match => {
+        message += typeof ligue1 === 'string' ? `🇫🇷 𝗟𝗶𝗴𝘂𝗲 1:\n${ligue1}\n\n` : ligue1.length > 0 ? `🇫🇷 𝗟𝗶𝗴𝘂𝗲 1:\n${ligue1.map(match => {
             const { game, date, time } = match;
             return `${game}\nDate: ${date}\nTime: ${time} (EAT)\n`;
-        }).join('\n')}\n\n` : "*🇫🇷 ʟɨɢʊɛ-1*: No matches scheduled\n\n";
+        }).join('\n')}\n\n` : "🇫🇷 𝗟𝗶𝗴𝘂𝗲- 1: No matches scheduled\n\n";
 
-        message += "*Ꮏɨოɛ 𐌀ռɖ ɖ𐌀Ꮏɛ 𐌀ʀɛ ɨռ ɛ𐌀ֆᎿ 𐌀ʄʀɨƈ𐌀 Ꮏɨʍɛʐօռɛ (ɛ𐌀Ꮏ).*";
+        message += "𝗧𝗶𝗺𝗲 𝗮𝗻𝗱 𝗗𝗮𝘁𝗲 𝗮𝗿𝗲 𝗶𝗻 𝗘𝗮𝘀𝘁 𝗔𝗳𝗿𝗶𝗰𝗮 𝗧𝗶𝗺𝗲𝘇𝗼𝗻𝗲 (𝗘𝗔𝗧).";
 
         await m.reply(message);
     } catch (error) {
-        m.reply('*Something went wrong. Unable to fetch matches.*' + error);
+        m.reply('Something went wrong. Unable to fetch matches.' + error);
     }
 };
 break;		      
@@ -3880,7 +3853,7 @@ break;
                 reply(`Countdown of  ${q} starting from now to close the group`)
                 setTimeout(() => {
                     var nomor = m.participant
-                    const close = `*Ᏻʀօʊք ཏ𐌀ֆ ɮɛɛռ օႲɛռɛɖ ֆʊƈƈɛֆֆʄʊʟ ✅*`
+                    const close = `𝗚𝗿𝗼𝘂𝗽 𝗵𝗮𝘀 𝗯𝗲𝗲𝗻 𝗰𝗹𝗼𝘀𝗲𝗱`
                     client.groupSettingUpdate(m.chat, 'announcement')
                     reply(close)
                 }, timer)
@@ -3906,7 +3879,7 @@ break;
                 reply(`Countdown of ${q} starting from now to open the group`)
                 setTimeout(() => {
                     var nomor = m.participant
-                    const open = `*Ᏻʀօʊք ཏ𐌀ֆ ɮɛɛռ օpɛռɛɖ ֆʊƈƈɛֆֆʄʊʟ ✅*`
+                    const open = `𝗚𝗿𝗼𝘂𝗽 𝗼𝗽𝗲𝗻𝗲𝗱 𝘀𝘂𝗰𝗰𝗲𝘀𝗳𝘂𝗹𝗹𝘆`
                     client.groupSettingUpdate(m.chat, 'not_announcement')
                     reply(open)
                 }, timer)
@@ -3920,7 +3893,7 @@ break;
                  if (!isAdmin) throw admin; 
   
                      await client.groupSettingUpdate(m.chat, 'announcement'); 
- m.reply('*Group successfully locked!*'); 
+ m.reply('Group successfully locked!'); 
  } 
  break; 
 
@@ -3931,7 +3904,7 @@ break;
                  if (!isAdmin) throw admin; 
   
                      await client.groupSettingUpdate(m.chat, 'not_announcement'); 
- m.reply('*Group successfully unlocked!*'); 
+ m.reply('Group successfully unlocked!'); 
   
  }
         break; 
@@ -4053,7 +4026,7 @@ if (!m.isGroup) throw group;
           case "leave": { 
                  if (!Owner) throw NotOwner;
 		 if (!m.isGroup) throw group;
- await client.sendMessage(m.chat, { text : '*ᏳօօɖႪʏɛ ɛʋɛʀʏօռɛ 👋. ʄʀօֆ𐌕-𐌀ɨ ɨֆ ʟɛ𐌀ʋɨռɢ 𐌕ɦɛ ɢʀօʊք ռօա!...*' , mentions: participants.map(a => a.id)}, { quoted : m }); 
+ await client.sendMessage(m.chat, { text : '𝗚𝗼𝗼𝗱𝗯𝘆𝗲 𝗲𝘃𝗲𝗿𝘆𝗼𝗻𝗲👋. 𝗥𝗮𝘃𝗲𝗻-𝗔𝗶 𝗶𝘀 𝗟𝗲𝗮𝘃𝗶𝗻𝗴 𝘁𝗵𝗲 𝗚𝗿𝗼𝘂𝗽 𝗻𝗼𝘄...' , mentions: participants.map(a => a.id)}, { quoted : m }); 
                  await client.groupLeave(m.chat); 
   
              } 
@@ -4084,7 +4057,7 @@ if (!m.isGroup) throw group;
 //========================================================================================================================//		      
      case "hidetag": case "tag": { 
              if (!m.isGroup) throw group;          
-            client.sendMessage(m.chat, { text : q ? q : '*ɨռʋɨռƈɨႪʟɛ 💫 𐌕𐌀ɢ*' , mentions: participants.map(a => a.id)}, { quoted: m }); 
+            client.sendMessage(m.chat, { text : q ? q : '😅𝗕𝗹𝗶𝗻𝗱 𝗧𝗮𝗴𝘀😅' , mentions: participants.map(a => a.id)}, { quoted: m }); 
              } 
  break; 
 
@@ -4093,7 +4066,7 @@ if (!m.isGroup) throw group;
                  if (!m.isGroup) throw group; 
                  if (!isBotAdmin) throw botAdmin; 
                  if (!isAdmin) throw admin; 
- let teks = `*ʄʀօֆ𐌕-𐌀ɨ 💫 𐌕𐌀ɢ*: 
+ let teks = `𝗢𝗻𝗹𝘆 𝗳𝗼𝗼𝗹𝘀 𝗮𝗿𝗲 𝘁𝗮𝗴𝗴𝗲𝗱 𝗵𝗲𝗿𝗲😅: 
    
   Message ${q ? q : ''}*\n\n`; 
                  for (let mem of participants) { 
@@ -4111,14 +4084,14 @@ case "whatsong": case "shazam": {
             'access_secret': "KKbVWlTNCL3JjxjrWnywMdvQGanyhKRN0fpQxyUo"
           });
           if (!m.quoted) {
-            throw "🎧 *Music ID Request*\n\nPlease reply to a music audio or video file.\n_Example:_ *.shazam*";
+            throw "Tagg a short video or audio";
           }
 
           let d = m.quoted ? m.quoted : m;
           let mimes = (d.msg || d).mimetype || d.mediaType || '';
           if (/video|audio/.test(mimes)) {
             let buffer = await d.download();
-            await reply("🔍 *Analyzing the audio...*\nPlease wait...");
+            await reply("Analyzing the media...");
             let {
               status,
               metadata
@@ -4127,9 +4100,9 @@ case "whatsong": case "shazam": {
               throw status.msg;
             }
             let { title, artists, album, genres, release_date } = metadata.music[0x0];
-            let txt = "*• 📌 Title:* " + title + (artists ? "\n*• 👤 Artists:* " + artists.map(_0x4f5d59 => _0x4f5d59.name).join(", ") : '');
-            txt += '' + (album ? "\n*• 🎧 Album:* " + album.name : '') + (genres ? "\n*• 😇 Genres:* " + genres.map(_0xf7bf2e => _0xf7bf2e.name).join(", ") : '') + "\n";
-            txt += "*• 📆 Release Date:* " + release_date;
+            let txt = "*• Title:* " + title + (artists ? "\n*• Artists:* " + artists.map(_0x4f5d59 => _0x4f5d59.name).join(", ") : '');
+            txt += '' + (album ? "\n*• Album:* " + album.name : '') + (genres ? "\n*• Genres:* " + genres.map(_0xf7bf2e => _0xf7bf2e.name).join(", ") : '') + "\n";
+            txt += "*• Release Date:* " + release_date;
             await client.sendMessage(m.chat, {
               'text': txt.trim()
             }, {
@@ -4196,20 +4169,20 @@ break;
 //========================================================================================================================//		      
   case "vv": case "retrieve":{
 
-if (!m.quoted) return m.reply("*Reply to a viewonce message*")
+if (!m.quoted) return m.reply("quote a viewonce message eh")
 
   const quotedMessage = m.msg?.contextInfo?.quotedMessage;
 
     if (quotedMessage.imageMessage) {
       let imageCaption = quotedMessage.imageMessage.caption;
       let imageUrl = await client.downloadAndSaveMediaMessage(quotedMessage.imageMessage);
-      client.sendMessage(m.chat, { image: { url: imageUrl }, caption: `> Retrieved by Frost-Ai!\n${imageCaption}`}, { quoted: m });
+      client.sendMessage(m.chat, { image: { url: imageUrl }, caption: `Retrieved by Raven!\n${imageCaption}`}, { quoted: m });
     }
 
     if (quotedMessage.videoMessage) {
       let videoCaption = quotedMessage.videoMessage.caption;
       let videoUrl = await client.downloadAndSaveMediaMessage(quotedMessage.videoMessage);
-      client.sendMessage(m.chat, { video: { url: videoUrl }, caption: `> Retrieved by Frost-Ai!\n${videoCaption}`}, { quoted: m });
+      client.sendMessage(m.chat, { video: { url: videoUrl }, caption: `Retrieved by Raven!\n${videoCaption}`}, { quoted: m });
     }
       }
 	break;
@@ -4224,13 +4197,13 @@ if (!m.quoted) return m.reply("Hurrahhh")
     if (quotedMessage.imageMessage) {
       let imageCaption = quotedMessage.imageMessage.caption;
       let imageUrl = await client.downloadAndSaveMediaMessage(quotedMessage.imageMessage);
-      client.sendMessage(client.user.id, { image: { url: imageUrl }, caption: `> Retrieved by Frost-Ai!\n${imageCaption}`}, { quoted: m });
+      client.sendMessage(client.user.id, { image: { url: imageUrl }, caption: `Retrieved by Raven!\n${imageCaption}`}, { quoted: m });
     }
 
     if (quotedMessage.videoMessage) {
       let videoCaption = quotedMessage.videoMessage.caption;
       let videoUrl = await client.downloadAndSaveMediaMessage(quotedMessage.videoMessage);
-      client.sendMessage(client.user.id, { video: { url: videoUrl }, caption: `> Retrieved by Frost-Ai!\n${videoCaption}`}, { quoted: m });
+      client.sendMessage(client.user.id, { video: { url: videoUrl }, caption: `Retrieved by Raven!\n${videoCaption}`}, { quoted: m });
     }
       }
 	break;
@@ -4286,9 +4259,9 @@ case 'ytsearch':
             return;
         }
         const length = videos.length < 10 ? videos.length : 10;
-        let tex = `🧪 YouTube Search\n🔍 Query ~> ${term}\n\n`;
+        let tex = `YouTube Search\n🔍 Query ~> ${term}\n\n`;
         for (let i = 0; i < length; i++) {
-            tex += `🖇️ Link ~> ${videos[i].url}\n🧩 Channel ~> ${videos[i].author.name}\n🌐 Title ~> ${videos[i].title}\n\n`;
+            tex += `Link ~> ${videos[i].url}\nChannel ~> ${videos[i].author.name}\nTitle ~> ${videos[i].title}\n\n`;
         }
         reply(tex)
         return;
@@ -4301,13 +4274,13 @@ const ytSearch = require("yt-search");
 const fetch = require('node-fetch');
 try {
 
-if (!text) return m.reply("*քʟɛ𐌀ֆɛ քʀօʋɨɖɛ 𐌀 ʋ𐌀ʟɨɖ ʟɨռk!*")
+if (!text) return m.reply("𝗣𝗿𝗼𝘃𝗶𝗱𝗲 𝗮 𝘃𝗮𝗹𝗶𝗱 𝗬𝗼𝘂𝘁𝘂𝗯𝗲 𝗹𝗶𝗻𝗸!")
 
 	let urls = text.match(/(?:https?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/(?:watch\?v=|v\/|embed\/|shorts\/|playlist\?list=)?)([a-zA-Z0-9_-]{11})/gi);
-	if (!urls) return m.reply('*₮ཏɨֆ ɨֆ ռօƚ 𐌀 ʋ𐌀ʟɨɖ ʟɨռk!*');
+	if (!urls) return m.reply('𝗧𝗵𝗶𝘀 𝗶𝘀 𝗻𝗼𝘁 𝗮 𝗬𝗼𝘂𝘁𝘂𝗯𝗲 𝗟𝗶𝗻𝗸');
 	let urlIndex = parseInt(text) - 1;
 	if (urlIndex < 0 || urlIndex >= urls.length)
-		return m.reply('*ɨռʋ𐌀ʟɨɖ ʟɨռk!.*');
+		return m.reply('𝗜𝗻𝘃𝗮𝗹𝗶𝗱 𝗟𝗶𝗻𝗸.');
 
         let search = await yts(text);
     let link = search.all[0].url;
@@ -4348,7 +4321,7 @@ if (!text) return m.reply("*քʟɛ𐌀ֆɛ քʀօʋɨɖɛ 𐌀 ʋ𐌀ʟɨɖ ʟɨ
                 {
                   document: { url: outputPath },
                   mimetype: "audio/mp3",
-		  caption: "*𝐃օառlօ𐌀ɖɛɖ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀i*",
+		  caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧",
                   fileName: outputFileName,
                 },
                 { quoted: m }
@@ -4366,7 +4339,7 @@ if (!text) return m.reply("*քʟɛ𐌀ֆɛ քʀօʋɨɖɛ 𐌀 ʋ𐌀ʟɨɖ ʟɨ
         continue;
       }
    }
-    m.reply("🚫 An error occurred. All APIs might be down or unable to process the request.");
+    m.reply("An error occurred. All APIs might be down or unable to process the request.");
   } catch (error) {
     m.reply("Download failed\n" + error.message);
   }
@@ -4378,13 +4351,13 @@ case 'ytmp4':
 case "ytv": {
 	try {
 
-if (!text) return m.reply("*քʟɛ𐌀ֆɛ քʀօʋɨɖɛ 𐌀 ʋ𐌀ʟɨɖ ʟɨռk!*")
+if (!text) return m.reply("𝗣𝗿𝗼𝘃𝗶𝗱𝗲 𝗮 𝘃𝗮𝗹𝗶𝗱 𝗬𝗼𝘂𝗧𝘂𝗯𝗲 𝗹𝗶𝗻𝗸!")
 
         let urls = text.match(/(?:https?:\/\/)?(?:youtu\.be\/|(?:www\.|m\.)?youtube\.com\/(?:watch\?v=|v\/|embed\/|shorts\/|playlist\?list=)?)([a-zA-Z0-9_-]{11})/gi);
-        if (!urls) return m.reply('*₮ཏɨֆ ɨֆ ռօƚ 𐌀 ʋ𐌀ʟɨɖ ʟɨռk!*');
+        if (!urls) return m.reply('𝗧𝗵𝗶𝘀 𝗶𝘀 𝗻𝗼𝘁 𝗮 𝗬𝗼𝘂𝗧𝘂𝗯𝗲 𝗹𝗶𝗻𝗸');
         let urlIndex = parseInt(text) - 1;
         if (urlIndex < 0 || urlIndex >= urls.length)
-                return m.reply('*ɨռʋ𐌀ʟɨɖ ʟɨռk!.*');
+                return m.reply('𝗜𝗻𝘃𝗮𝗹𝗶𝗱 𝗹𝗶𝗻𝗸.');
 
         let search = await yts(text);
     if (!search.all.length) {
@@ -4411,7 +4384,7 @@ if (!text) return m.reply("*քʟɛ𐌀ֆɛ քʀօʋɨɖɛ 𐌀 ʋ𐌀ʟɨɖ ʟɨ
         {
           video: { url: videoData.downloadUrl },
           mimetype: "video/mp4",
-          caption: "*𝐃օառlօ𐌀ɖɛɖ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀i**
+          caption: "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗗 𝗕𝗬 𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧",
         },
         { quoted: m }
       );
@@ -4432,7 +4405,7 @@ if (!text) return m.reply("*քʟɛ𐌀ֆɛ քʀօʋɨɖɛ 𐌀 ʋ𐌀ʟɨɖ ʟɨ
     case "ping": case "speed": {
                  
 	    await loading ()
-	     m.reply (`*རռɨԵɨαℓɨʐɨռց ႪօԵ Պօɖυℓɛֆ!*\n *${Rspeed.toFixed(4)} Պֆ*`); 
+	     m.reply (`𝗣𝗼𝗻𝗴\n ${Rspeed.toFixed(4)} 𝗠𝘀`); 
          } 
  break; 
 
@@ -4444,16 +4417,16 @@ if (!text) return m.reply("*քʟɛ𐌀ֆɛ քʀօʋɨɖɛ 𐌀 ʋ𐌀ʟɨɖ ʟɨ
 
 //========================================================================================================================//		      
 	case 'runtime':
-		let frost = `  ${runtime(process.uptime())}`
+		let raven = `  ${runtime(process.uptime())}`
                 client.sendMessage(m.chat, {
-                    text: frost,
+                    text: raven,
                     contextInfo: {
                         externalAdReply: {
                             showAdAttribution: true,
-                            title: 'ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀i',
-                            body: 'https://github.com/Tappy-Black/Frost-Byte',
-                            thumbnailUrl: 'https://files.catbox.moe/2p885c.jpg',
-                            sourceUrl: 'https://github.com/Tappy-Black/Frost-Byte',
+                            title: '𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧',
+                            body: 'https://github.com/HunterNick2/RAVEN-BOT',
+                            thumbnailUrl: 'https://files.catbox.moe/duv8ac.jpg',
+                            sourceUrl: 'https://github.com/HunterNick2/RAVEN-BOT',
                             mediaType: 1,
                             renderLargerThumbnail: true
                         }
@@ -4477,7 +4450,7 @@ if (!text) return m.reply("*քʟɛ𐌀ֆɛ քʀօʋɨɖɛ 𐌀 ʋ𐌀ʟɨɖ ʟɨ
                 mimetype: "application/vnd.android.package-archive",
                 contextInfo: {
         externalAdReply: {
-          title: `ʄʀօֆᴛ-ɮʏᴛɛ-𐌀i`,
+          title: `RAVEN-BOT`,
           body: `${tylor.BK9.name}`,
           thumbnailUrl: `${tylor.BK9.icon}`,
           sourceUrl: `${tylor.BK9.dllink}`,
@@ -4549,7 +4522,7 @@ if (!text) return m.reply("No emojis provided ? ")
 
         const { title, artist, link, thumb, lyrics } = data.result;
 
-        const imageUrl = thumb || "https://files.catbox.moe/2p885c.jpg";
+        const imageUrl = thumb || "https://i.imgur.com/Cgte666.jpeg";
 
         const imageBuffer = await fetch(imageUrl)
             .then(res => res.buffer())
@@ -4562,7 +4535,7 @@ if (!text) return m.reply("No emojis provided ? ")
             return m.reply("An error occurred while fetching the image.");
         }
 
-        const caption = `**😇 Title**: ${title}\n**🌐 Artist**: ${artist}\n\n${lyrics}`;
+        const caption = `**Title**: ${title}\n**Artist**: ${artist}\n\n${lyrics}`;
 
         await client.sendMessage(
             m.chat,
@@ -4590,7 +4563,7 @@ if (!text) return m.reply("No emojis provided ? ")
    fs.unlinkSync(media); 
    if (err) throw err 
    let buffer = fs.readFileSync(mokaya); 
-   client.sendMessage(m.chat, { image: buffer, caption: `*> Ǥεƞεʀατε∂ ϐγ ʄʀօֆᴛ-𝐁ʏᴛɛ-𐌀ї*`}, { quoted: m }) 
+   client.sendMessage(m.chat, { image: buffer, caption: `𝗖𝗼𝗻𝘃𝗲𝗿𝘁𝗲𝗱 𝗯𝘆 𝗥𝗮𝘃𝗲𝗻-𝗕𝗼𝘁`}, { quoted: m }) 
    fs.unlinkSync(mokaya); 
     }); 
     } 
@@ -4666,7 +4639,7 @@ if (!text) return m.reply("No emojis provided ? ")
          let res = groups.map(v => v.id) 
          reply(` Broadcasting in ${res.length} Group Chat, in ${res.length * 1.5} seconds`) 
          for (let i of res) { 
-             let txt = `*ʄʀօֆᴛ-ɮʏᴛɛ-𐌀i ɮʀօ𐌀ɖƈ𐌀ֆ𐌕*\n\n🀄 Message: ${text}\n\n😇 Author: ${pushname}` 
+             let txt = `𝗥𝗔𝗩𝗘𝗡-𝗕𝗢𝗧 𝗕𝗥𝗢𝗔𝗗𝗖𝗔𝗦𝗧\n\n🀄 Message: ${text}\n\nAuthor: ${pushname}` 
              await client.sendMessage(i, { 
                  image: { 
                      url: menulink
@@ -4681,7 +4654,7 @@ if (!text) return m.reply("No emojis provided ? ")
 //========================================================================================================================//		      
  case "gemini": {
     try {
-        if (!text) return m.reply("This is Frost-Ai, an AI using Gemini APIs to process text, provide your query");
+        if (!text) return m.reply("This is Raven, an AI using Gemini APIs to process text, provide yr query");
     
         const { default: Gemini } = await import('gemini-ai');
 
@@ -4726,22 +4699,22 @@ if (!text) return m.reply("No emojis provided ? ")
 //========================================================================================================================//
 case "block": { 
  if (!Owner) throw NotOwner; 
- if (!m.quoted) throw `*𐌕𐌀ɢ ֆօʍɛօռɛ!*`  
+ if (!m.quoted) throw `𝗧𝗮𝗴 𝘀𝗼𝗺𝗲𝗼𝗻𝗲!`  
  let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
-	 if (users == "254756360306@s.whatsapp.net") return m.reply("*I ϲαƞƞɸτ βℓɸϲΚ ʍψ ɸwƞεʀ 😡*");
-		  if (users  == client.decodeJid(client.user.id)) throw '*ɨ ϲαƞƞɸτ βℓɸϲΚ ʍψֆɛʟʄ ɨɖօƚ 😡*';
+	 if (users == "254114660061@s.whatsapp.net") return m.reply("𝗜 𝗰𝗮𝗻𝗻𝗼𝘁 𝗯𝗹𝗼𝗰𝗸 𝗺𝘆 𝗢𝘄𝗻𝗲𝗿 😡");
+		  if (users  == client.decodeJid(client.user.id)) throw '𝗜 𝗰𝗮𝗻𝗻𝗼𝘁 𝗯𝗹𝗼𝗰𝗸 𝗺𝘆𝘀𝗲𝗹𝗳 𝗶𝗱𝗶𝗼𝘁 😡';
  await client.updateBlockStatus(users, 'block'); 
- m.reply (`*ɮʟօƈᏦɛɖ ֆʊƈƈɛֆֆʄʊʟ✅!*`); 
+ m.reply (`𝗕𝗹𝗼𝗰𝗸𝗲𝗱 𝘀𝘂𝗰𝗰𝗲𝘀𝗳𝘂𝗹𝗹𝘆!`); 
  } 
  break; 
 
 //========================================================================================================================//		      
  case "unblock": { 
  if (!Owner) throw NotOwner; 
- if (!m.quoted) throw `*𐌕𐌀ɢ ֆօʍɛօռɛ!*`; 
+ if (!m.quoted) throw `𝗧𝗮𝗴 𝘀𝗼𝗺𝗲𝗼𝗻𝗲!`; 
  let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'; 
  await client.updateBlockStatus(users, 'unblock'); 
- m.reply (`*ʊռɮʟօƈᏦɛɖ ֆʊƈƈɛֆֆʄʊʟ✅!*`); 
+ m.reply (`𝗨𝗻𝗯𝗹𝗼𝗰𝗸𝗲𝗱 𝘀𝘂𝗰𝗰𝗲𝘀𝗳𝘂𝗹𝗹𝘆✅!`); 
  } 
  break;
 
@@ -4807,7 +4780,7 @@ let ts = await convertTimestamp(info.creation);
 try {
         pp = await client.profilePictureUrl(chat, 'image');
       } catch {
-        pp = 'https://files.catbox.moe/2p885c.jpg';
+        pp = 'https://files.catbox.moe/duv8ac.jpg';
       }
 
 await client.sendMessage(m.chat, { image: { url: pp }, 
@@ -4840,7 +4813,7 @@ await client.sendMessage(m.chat, { image: { url: pp },
               console.log(chalk.black(chalk.bgRed("[ ERROR ]")), color("command", "turquoise"), color(`${prefix}${command}`, "turquoise"), color("Raven", "turquoise"));
             } else if (argsLog || (cmd && m.isGroup)) {
               // client.sendReadReceipt(m.chat, m.sender, [m.key.id])
-              console.log(chalk.black(chalk.bgRed("[ ERROR ]")), color("command", "turquoise"), color(`${prefix}${command}`, "turquoise"), color("Frost", "turquoise"));
+              console.log(chalk.black(chalk.bgRed("[ ERROR ]")), color("command", "turquoise"), color(`${prefix}${command}`, "turquoise"), color("Raven", "turquoise"));
             }
           }
         }
