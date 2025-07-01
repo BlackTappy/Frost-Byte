@@ -1,4 +1,4 @@
-<<<<<<<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Black+Ops+One&size=100&pause=1000&color=FF0000&center=true&width=1000&height=200&lines=FROST-BYTE-AI" alt="Typing SVG" /></a>
+🧩<<<<<<<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Black+Ops+One&size=100&pause=1000&color=FF0000&center=true&width=1000&height=200&lines=FROST-BYTE-AI" alt="Typing SVG" /></a>
   </p>
 +
 
@@ -66,11 +66,11 @@ Click the button below to fork:
 
 
 ## ᴄʀᴇᴅɪᴛs ᴀɴᴅ ᴅᴇᴠs
-> XEON-XMD Owner 
+> Frost-Byte Owner 
 - [Black-Tappy](https://github.com/Black-Tappy)
 - Creater and Owner Of REDMAGIC-XMD 
-> XEON-XMD Helpers 
-- [POPKID](https://github.com/Popkiddevs)
+> Frost-Byte Helpers 
+- [Tappy-Black](https://github.com/Tappy-Black)
 - For helping in bot plugin files.
   
 
