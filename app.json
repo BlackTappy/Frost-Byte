@@ -14,8 +14,8 @@
     "baileys-md",
     "md-bot"
   ],
-  "website": "https://github.com/Tappy-Black/Frost-Byte#readme",
-  "repository": "https://github.com/Tappy-Black/Frost-Byte.git",
+  "website": "https://github.com/BlackTappy/Frost-Byte#readme",
+  "repository": "https://github.com/BlackTappy/Frost-Byte.git",
   "logo": "https://files.catbox.moe/2p885c.jpg",
   "success_url": "/",
   "env": {
